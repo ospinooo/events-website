@@ -1,43 +1,190 @@
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <div id="navbar-brand" class="navbar-item">MusicMeets</div>
+    <a id="navbar-burger" role="button" class="navbar-burger burger"
+      aria-label="menu"
+      aria-expanded="false" data-target="navbarBasicExample"
+      (click)="collapse()">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse"
-    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div id="navbar-menu" class="navbar-menu">
+    <div class="navbar-start">
+      <!-- <a class="navbar-item">
+        Home
+      </a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <a class="navbar-brand" href="#">MusicMeet</a>
-    <ul class="navbar-nav mr-auto">
+      <a class="navbar-item">
+        Documentation
+      </a>
 
-      <!-- <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-          role="button" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          Dropdown
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1"
-          aria-disabled="true">Disabled</a>
-      </li> -->
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search"
-        aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      </div> -->
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" (click)="showModalSignUp()">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light" (click)="showModalSignIn()">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
+
+
+<div id="sign_up_modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-success" type="text" placeholder="Text input">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </div>
+        <p class="help is-success hidden">This username is available</p>
+      </div>
+
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left has-icons-right">
+          <input id="email_input" class="input is-danger" type="email"
+            placeholder="Email input">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+        </div>
+        <p class="help is-danger">This email is invalid</p>
+      </div>
+
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input id="email_input2" class="input" type="email"
+            placeholder="Repeat email">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <!-- <span class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span> -->
+        </div>
+        <!-- <p class="help is-danger">This email is invalid</p> -->
+      </div>
+
+      <div class="field">
+        <label class="label">Password</label>
+        <p class="control has-icons-left">
+          <input id="password" class="input" type="password"
+            placeholder="Password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+
+      <div class="field">
+        <p class="control has-icons-left">
+          <input id="password2" class="input" type="password"
+            placeholder="Repeat password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+
+      <!-- <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+          <textarea class="textarea" placeholder="Textarea"></textarea>
+        </div>
+      </div> -->
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox">
+            I agree to the <a href="#">terms and conditions</a>
+          </label>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="signUp()">Submit</button>
+      <button class="button" (click)="closeModalSignUp()">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+
+<div id="sign_in_modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <section class="modal-card-body">
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="email" placeholder="Email">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Log In</button>
+      <button class="button" (click)="closeModalSignIn()">Cancel</button>
+    </footer>
+  </div>
+</div>

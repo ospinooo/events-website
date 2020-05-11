@@ -5,8 +5,5 @@
 
 .navbar-brand {
   font-family: 'Leckerli One';
-  font-weight: lighter;
-  background-color: black;
-  padding: 5px;
-  border-radius: 15%;
+  font-size: large;
 }
