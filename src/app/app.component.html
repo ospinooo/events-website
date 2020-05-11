@@ -3,13 +3,14 @@
 <br>
 
 <div class="container-fluid" style="height: 100%;">
-  <div class="row">
-    <div class="col-4" style="background-color: lightblue;">
+  <div class="columns">
+    <div class="column container is-fluid is-one-quarter">
       <app-lateral-navbar></app-lateral-navbar>
     </div>
 
-    <div class="col-8" style="background-color: antiquewhite;">
-      <app-events-list></app-events-list>
+
+    <div class="column container is-fluid">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
@@ -17,7 +18,11 @@
 
 <!-- footer -->
 <footer class="footer">
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="https://ospino.me/">ospino.me</a>
+  <div class="content has-text-centered">
+    <p>
+      <strong>Events</strong> by <a href="https://ospino.me/">ospino.me</a>.
+      <br>
+      © {{ year }} Copyright:
+    </p>
   </div>
 </footer>
