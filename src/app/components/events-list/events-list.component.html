@@ -1,41 +1,24 @@
-<div>
+<div class="container is-fluid">
 
-  <div class="card" style="width: 100%; height: 100%">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">Some quick example text to build on the card
-        title and make up the bulk of the card's content.</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+  <div class="columns">
+    <div class="column" routerLink='/events/{{events[0].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{events[1].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{events[2].id}}'><app-event-card></app-event-card></div>
   </div>
-
-  <br>
-
-  <div class="card" style="width: 100%; height: 100%">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">Some quick example text to build on the card
-        title and make up the bulk of the card's content.</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+  <div class="columns">
+    <div class="column" routerLink='/events/{{events[3].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{events[4].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{events[5].id}}'><app-event-card></app-event-card></div>
   </div>
-
-  <br>
-
-  <div class="card" style="width: 100%; height: 100%">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">Some quick example text to build on the card
-        title and make up the bulk of the card's content.</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+  <div class="columns">
+    <div class="column" routerLink='/events/{{events[6].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{events[7].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{events[8].id}}'><app-event-card></app-event-card></div>
   </div>
+</div>
 
-
+<div class="loading-contianer" style="display:none;">
+  <div class="loading">
+    <progress class="progress is-small is-primary" max="100">15%</progress>
+  </div>
 </div>
