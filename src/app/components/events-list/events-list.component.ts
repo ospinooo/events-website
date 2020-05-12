@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventsService } from 'src/app/services/events.service';
 import { Event } from '../event-details/event.model';
 
 @Component({
@@ -8,29 +9,18 @@ import { Event } from '../event-details/event.model';
 })
 export class EventsListComponent implements OnInit {
 
-  events = [
-    new Event("Event 1 ", 1),
-    new Event("Event 2 ", 2),
-    new Event("Event 3 ", 3),
-    new Event("Event 4 ", 4),
-    new Event("Event 5 ", 5),
-    new Event("Event 6 ", 6),
-    new Event("Event 7 ", 7),
-    new Event("Event 8 ", 8),
-    new Event("Event 9 ", 9),
-    new Event("Event 10 ", 10),
-  ]
 
+  events;
 
   /**
    * Each time we construct the events list we are going to pass in params a Search key
    */
-  constructor() {
+  constructor(private eventsService: EventsService) {
 
   }
 
   ngOnInit(): void {
-
+    this.events = this.eventsService.getEvents();
   }
 
   range(end): Array<Number> {
