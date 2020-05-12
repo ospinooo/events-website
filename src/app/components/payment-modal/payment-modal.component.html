@@ -1,0 +1,113 @@
+<header class="modal-card-head">
+  <nav class="breadcrumb is-centered has-succeeds-separator"
+    aria-label="breadcrumbs">
+    <ul>
+      <li [className]="step_id == 0 ? 'is-active': ''"><a (click)="step_id= 0">Tickets</a></li>
+      <li [className]="step_id == 1 ? 'is-active': ''"><a (click)="step_id= 1">Documentation</a></li>
+      <li [className]="step_id == 2 ? 'is-active': ''"><a (click)="step_id= 2">Checkout</a></li>
+      <li [className]="step_id == 3 ? 'is-active': ''"><a (click)="step_id= 3">Confirmation</a></li>
+    </ul>
+  </nav>
+</header>
+<section class="modal-card-body">
+  <div class="content">
+    <div id="select-number-tickets" [style.display]="step_id != 0 ? 'none' :
+      ''">
+      <div *ngFor="let fee of [{name:2, id:1, price: 2}]" class="control">
+        <br>
+        <label class="label">Tickets for the fee {{fee.name}}: </label>
+        <div class="select">
+          <select (change)="changeTotalNumber($event, fee.id)">
+            <option *ngFor="let op of arrayOne(11); let i= index;"
+              value="{{i}}">{{i}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="insert-names-of-tickets" [style.display]="step_id != 1 ? 'none'
+      :''">
+
+      <div *ngIf="this.total_people == 0">
+        <i class="far fa-frown fa-10x center"></i>
+        <hr>
+        <span class="center">We want people to come. 0 is not a
+          possible number.
+        </span>
+      </div>
+
+      <div *ngIf="this.total_people> 0" class="columns">
+        <div class="column"><label class="label">Name</label></div>
+        <div class="column"><label class="label">Id</label></div>
+      </div>
+      <div *ngFor="let people of arrayOne(this.total_people); let i= index;">
+        <!-- <label class="label">Person {{i}}</label> -->
+        <div class="columns">
+          <div class="column"><input class="input" type="text" placeholder="e.g
+              Pablo Ospino"></div>
+          <div class="column"><input class="input" type="tel" placeholder="e.g.
+              71234567P"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="payment-checkout" [style.display]="step_id != 2 ? 'none' : ''">
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="name" placeholder="e.g. Pablo Ospino">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Card Number</label>
+        <div class="control">
+          <input class="input" type="tel" pattern="[0-9\s]{13,19}"
+            maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">CVV</label>
+        <div class="control">
+          <input class="input" type="tel" maxlength="3" pattern="\d{3}"
+            placeholder="e.g.
+            123">
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Month</label>
+            <div class="control">
+              <input class="input" type="tel" maxlength="2"
+                pattern="[01|02|03|04|05|06|07|08|09|10|11|12]"
+                placeholder="e.g.
+                06">
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Year</label>
+            <div class="control">
+              <input class="input" type="tel"
+                pattern="\d{2}"
+                maxlength="2"
+                placeholder="22">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="confirmation" class="is-success center" [style.display]="step_id !=
+      3 ?
+      'none' : ''"><i class="fas fa-check fa-10x is-success"></i></div>
+  </div>
+</section>
+<footer id="footer-modal" class="modal-card-foot">
+  <button id="continue-button" class="button is-success" (click)="continue()"
+    [style.display]="step_id == 3 ? 'none' : ''">Continue</button>
+</footer>
