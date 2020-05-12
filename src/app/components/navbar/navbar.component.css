@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'Leckerli One';
-  src: url('../../../assets/fonts/LeckerliOne-Regular.ttf');
-}
-
 .navbar-brand {
   font-family: 'Leckerli One';
   font-size: large;
