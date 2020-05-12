@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  showModalSignUp() {
+  openModalSignUp() {
     document.getElementById("sign_up_modal").classList.add("is-active");
     document.getElementById("sign_up_modal").classList.add("is-clipped");
   }
@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
     document.getElementById("sign_up_modal").classList.remove("is-clipped");
   }
 
-  showModalSignIn() {
+  openModalSignIn() {
     document.getElementById("sign_in_modal").classList.add("is-active");
     document.getElementById("sign_in_modal").classList.add("is-clipped");
 
