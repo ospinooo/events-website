@@ -8,6 +8,7 @@ import { LateralNavbarComponent } from './components/lateral-navbar/lateral-navb
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EventDetailsComponent } from './components/event-details/event-details.
     LateralNavbarComponent,
     NavbarComponent,
     EventCardComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    PaymentModalComponent
   ],
   imports: [
     BrowserModule,
