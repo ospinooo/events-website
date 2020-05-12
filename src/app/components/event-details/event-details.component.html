@@ -1,1 +1,150 @@
-<p>event-details works! {{id}}</p>
+<div class="card">
+  <div class="tabs is-centered">
+    <ul>
+      <li class="is-active"><a>Description</a></li>
+      <li><a>Music</a></li>
+      <li><a>Videos</a></li>
+      <li><a>Documents</a></li>
+    </ul>
+  </div>
+
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img src="https://bulma.io/images/placeholders/1280x960.png"
+        alt="Placeholder image">
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="https://bulma.io/images/placeholders/96x96.png"
+            alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="columns">
+          <div class="column">
+            <p class="title is-4">{{event_model.id}} - {{event_model.title}}</p>
+            <p class="subtitle is-6">{{"SUBTITLE"}}</p>
+          </div>
+          <div class="column is-right card-datetime"><strong>Time</strong>:
+            <time
+              datetime="2016-1-1">11:09
+              PM - 1 Jan 2016</time></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      Lorem Ipsum
+      "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+      consectetur, adipisci velit..."
+      "There is no one who loves pain itself, who seeks after it and wants to
+      have it, simply because it is pain..."
+
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+      consectetur diam vitae molestie elementum. Pellentesque sagittis ac ante a
+      ultricies. Aliquam erat volutpat. Vivamus congue elementum ante. Donec a
+      finibus lectus. Donec eu nisl vitae nisl maximus lobortis at vehicula
+      tortor. Aenean non congue enim, sit amet suscipit neque. Phasellus id
+      commodo risus. Vestibulum eu suscipit elit. Nam fermentum sed sem sed
+      dictum. Nulla imperdiet gravida aliquet.
+      <hr>
+      <a>@bulmaio</a>.
+      <a href="#">#css</a> <a href="#">#responsive</a>
+      <br>
+      <div class="card-created-at">
+        <time datetime="2016-1-1">Created - 1 Jan 2016
+          <br> At 11:09 PM </time>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="button card-buy-tickets-button is-success"
+        (click)="openBuyTicketsModal()">Buy Tickets</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="buy_tickets_modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <nav class="breadcrumb is-centered has-succeeds-separator"
+        aria-label="breadcrumbs">
+        <ul>
+          <li class="is-active"><a href="#">Tickets</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Checkout</a></li>
+          <li><a href="#">Confirmation</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="modal-card-body">
+
+      <div id="select-number-tickets">
+        <div *ngFor="let fee of fees" class="control">
+          <br>
+          <label class="label">Tickets for the fee {{fee.name}}: </label>
+          <div class="select">
+            <select>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="insert-names-of-tickets">
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="e.g Pablo Ospino">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Id</label>
+          <div class="control">
+            <input class="input" type="email" placeholder="e.g. 71234567P">
+          </div>
+        </div>
+      </div>
+
+      <div id="payment-checkout">
+        <div class="field">
+          <label class="label">Card Number</label>
+          <div class="control">
+            <input class="input" type="tel" pattern="[0-9\s]{13,19}"
+              maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">CVV</label>
+          <div class="control">
+            <input class="input" type="email" placeholder="e.g. 71234567P">
+          </div>
+        </div>
+      </div>
+
+      <div id="confirmation" class="is-success"><i class="fas fa-check fa-7x"></i></div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" aria-label="close"
+        (click)="closeBuyTicketsModal()">Cancel</button>
+      <button id="continue-button" class="button is-success">Continue</button>
+    </footer>
+  </div>
+</div>
