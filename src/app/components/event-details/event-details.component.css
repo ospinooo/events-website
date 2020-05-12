@@ -9,7 +9,6 @@
   color: rgb(126, 126, 126);
 }
 
-
 .card-buy-tickets-button {
   width: 100%;
   height: 100%;
@@ -19,14 +18,7 @@
 }
 
 
-.continue-button {
-  align-items: right;
-}
-
-
-
-
-#confirmation {
+/* #confirmation {
   width: 100%;
   height: 100%;
   display: flex;
@@ -34,3 +26,5 @@
   align-items: center;
   text-align: center;
 }
+
+*/

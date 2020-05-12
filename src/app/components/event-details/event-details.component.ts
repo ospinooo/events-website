@@ -49,11 +49,9 @@ export class EventDetailsComponent implements OnInit {
 
   openBuyTicketsModal() {
     document.getElementById("buy_tickets_modal").classList.add("is-active");
-    document.getElementById("buy_tickets_modal").classList.add("is-clipped");
   }
 
   closeBuyTicketsModal() {
     document.getElementById("buy_tickets_modal").classList.remove("is-active");
-    document.getElementById("buy_tickets_modal").classList.remove("is-clipped");
   }
 }
