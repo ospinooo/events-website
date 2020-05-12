@@ -1,51 +1,31 @@
-<!-- <div class="card">
-  <div class="card-body">
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="active" href="#"> 🎹 My events</a>
-      </li>
-      <li class="nav-item">
-        <a class="" href="#"> 🎼 Following events</a>
-      </li>
-      <li class="nav-item">
-        <a class="" href="#"> 🎶 Past events</a>
-      </li>
-    </ul>
-  </div>
-</div> -->
 
 <aside class="menu">
   <p class="menu-label">
     General
   </p>
   <ul class="menu-list">
-    <li><a class="is-active"> 🚀 Following events</a></li>
-    <li><a> 🎶 Past events</a></li>
-    <li><a> 🎹 My events</a></li>
+    <li routerLink="/"><a class="is-active"> 🚀 Following events</a></li>
+    <li routerLink="/"><a> 🎟 Tickets</a></li>
+    <li routerLink="/"><a> 🎹 My events</a></li>
+    <li routerLink="/"><a> 🎶 Past events</a></li>
   </ul>
   <p class="menu-label">
     Administration
   </p>
-  <ul class="menu-list">
-    <li><a>Team Settings</a></li>
+  <!-- <ul class="menu-list">
+    <a class="is-active">History</a>
     <li>
-      <a class="is-active">Manage Your Team</a>
       <ul>
         <li><a>Members</a></li>
         <li><a>Plugins</a></li>
         <li><a>Add a member</a></li>
       </ul>
     </li>
-    <li><a>Invitations</a></li>
-    <li><a>Cloud Storage Environment Settings</a></li>
-    <li><a>Authentication</a></li>
-  </ul>
-  <p class="menu-label">
-    Transactions
-  </p>
+  </ul> -->
   <ul class="menu-list">
-    <li><a>Payments</a></li>
-    <li><a>Transfers</a></li>
-    <li><a>Balance</a></li>
+    <li routerLink="/"><a> 💰 Payments</a></li>
+    <li routerLink="/profile"><a> 🙎🏻‍♂️ Profile</a></li>
+    <li routerLink="/admin"><a> 👨🏽‍💻 Admin</a></li>
+    <li routerLink="/about"><a> 🌐 About</a></li>
   </ul>
 </aside>
