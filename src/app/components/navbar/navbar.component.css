@@ -2,3 +2,11 @@
   font-family: 'Leckerli One';
   font-size: large;
 }
+
+
+#i-dont-have-account {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
