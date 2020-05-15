@@ -9,12 +9,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
-import { AboutComponent } from './components/about/about.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { httpInterceptorProviders } from './auth/auth.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
