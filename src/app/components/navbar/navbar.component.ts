@@ -48,11 +48,4 @@ export class NavbarComponent implements OnInit {
     document.getElementById("sign_in_modal").classList.remove("is-clipped");
   }
 
-  signUp() {
-    console.log("signUp");
-  }
-
-  signIn() {
-    console.log("signIn");
-  }
 }
