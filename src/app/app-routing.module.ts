@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
-import { AboutComponent } from './components/about/about.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 
