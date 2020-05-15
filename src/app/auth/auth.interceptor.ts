@@ -6,6 +6,8 @@ const TOKEN_HEADER_KEY = 'Authorization';
 
 /**
  * Implement the http interceptor.
+ * - Intercept the HttpRequest we are sending with the angular app and to something with it.
+ * - In this case we will use to add the Baerer TOKEN.
  */
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
