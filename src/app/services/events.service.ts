@@ -33,7 +33,7 @@ export class EventsService {
     return this.http.get<PageableEvent>(this.eventsUrl);
   }
 
-  /** GET contact by id. Will 404 if id not found */
+  /** GET event by id. Will 404 if id not found */
   getEvent(id: number): Observable<Event> {
     const url = `${this.eventsUrl}/${id}`;
     return this.http.get<Event>(url, httpOptions).pipe(
@@ -42,7 +42,7 @@ export class EventsService {
     );
   }
 
-  /** DELETE: delete the contact from the server */
+  /** DELETE: delete the event from the server */
   deleteEvent(event: Event | number): Observable<Event> {
     const id = typeof event === 'number' ? event : event.id;
     const url = `${this.eventsUrl}/${id}`;
@@ -72,7 +72,7 @@ export class EventsService {
     };
   }
 
-  /** Log a ContactService message with the MessageService */
+  /** Log a EventService message with the MessageService */
   private log(message: string) {
     console.log('EventService: ' + message);
   }
