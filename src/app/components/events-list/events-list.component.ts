@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { Event } from '../event-details/event.model';
 
+
+enum Direction {
+  ASC = "ASC",
+  DESC = "DESC"
+};
+
 @Component({
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
@@ -9,8 +15,11 @@ import { Event } from '../event-details/event.model';
 })
 export class EventsListComponent implements OnInit {
 
+  eventsList: Event[];
 
-  events;
+  page: number;
+  sortKey: String;
+  dir: Direction;
 
   /**
    * Each time we construct the events list we are going to pass in params a Search key
@@ -20,7 +29,7 @@ export class EventsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.events = this.eventsService.getEvents();
+    this.getEvents();
   }
 
   range(end): Array<Number> {
@@ -31,4 +40,11 @@ export class EventsListComponent implements OnInit {
     return ans;
   }
 
+  getEvents(): void {
+    this.eventsService.getEvents()
+      .subscribe(eventsList => {
+        console.log("HOLAA");
+        this.eventsList = eventsList.content
+      });
+  }
 }

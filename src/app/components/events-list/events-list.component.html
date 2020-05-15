@@ -1,19 +1,28 @@
 <div class="container is-fluid">
 
   <div class="columns">
-    <div class="column" routerLink='/events/{{events[0].id}}'><app-event-card></app-event-card></div>
-    <div class="column" routerLink='/events/{{events[1].id}}'><app-event-card></app-event-card></div>
-    <div class="column" routerLink='/events/{{events[2].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[0].id}}'><app-event-card
+        [event_model]="eventsList[0]"></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[1].id}}'><app-event-card
+        [event_model]="eventsList[1]"></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[2].id}}'><app-event-card
+        [event_model]="eventsList[2]"></app-event-card></div>
   </div>
   <div class="columns">
-    <div class="column" routerLink='/events/{{events[3].id}}'><app-event-card></app-event-card></div>
-    <div class="column" routerLink='/events/{{events[4].id}}'><app-event-card></app-event-card></div>
-    <div class="column" routerLink='/events/{{events[5].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[3].id}}'><app-event-card
+        [event_model]="eventsList[3]"></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[4].id}}'><app-event-card
+        [event_model]="eventsList[4]"></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[5].id}}'><app-event-card
+        [event_model]="eventsList[5]"></app-event-card></div>
   </div>
   <div class="columns">
-    <div class="column" routerLink='/events/{{events[6].id}}'><app-event-card></app-event-card></div>
-    <div class="column" routerLink='/events/{{events[7].id}}'><app-event-card></app-event-card></div>
-    <div class="column" routerLink='/events/{{events[8].id}}'><app-event-card></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[6].id}}'><app-event-card
+        [event_model]="eventsList[6]"></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[7].id}}'><app-event-card
+        [event_model]="eventsList[7]"></app-event-card></div>
+    <div class="column" routerLink='/events/{{eventsList[8].id}}'><app-event-card
+        [event_model]="eventsList[8]"></app-event-card></div>
   </div>
 </div>
 
