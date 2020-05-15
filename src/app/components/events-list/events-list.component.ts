@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
-import { Event } from '../event-details/event.model';
+import { Event } from '../../models/event.model';
 
 
 enum Direction {

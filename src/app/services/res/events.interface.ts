@@ -1,4 +1,4 @@
-import { Event } from '../../components/event-details/event.model';
+import { Event } from '../../models/event.model';
 
 export interface Fee {
   id: number;

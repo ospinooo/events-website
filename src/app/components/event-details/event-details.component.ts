@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from 'src/app/services/events.service';
-import { Event } from './event.model';
+import { Event } from '../../models/event.model';
 
 @Component({
   selector: 'app-event-details',
@@ -10,8 +10,10 @@ import { Event } from './event.model';
 })
 export class EventDetailsComponent implements OnInit {
 
+  @Input() event_model: Event;
+
+
   id: number;
-  event_model: Event;
   sub;
   fees = [
     { 'name': "fee1" },
@@ -26,20 +28,13 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
-      this.event_model = this.eventsService.getEvent(this.id);
+      this.getEvent();
     })
   }
 
   getEvent() {
-    // this.eventsService.getEvent(this.id).subscribe((contact) => {
-    //   this.id = contact.id;
-    //   this.firstname = contact.firstname;
-    //   this.lastname = contact.lastname;
-    //   this.email = contact.email;
-    //   this.telephone = contact.telephone;
-    // })
-
-    this.event_model = this.eventsService.getEvent(this.id);
+    this.eventsService.getEvent(this.id)
+      .subscribe((event) => this.event_model = event)
   }
 
 
