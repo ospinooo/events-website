@@ -1,15 +1,16 @@
-<section class="modal-card-body">
-  <div class="field">
-    <label class="label">Name</label>
+ <section class="modal-card-body">
+  <div class="field form-group">
+    <label class="label" for="name">Name</label>
     <div class="control">
-      <input class="input" type="text" placeholder="Text input">
+      <input class="input" type="text" placeholder="Name" required #name>
     </div>
   </div>
 
   <div class="field">
     <label class="label">Username</label>
     <div class="control has-icons-left has-icons-right">
-      <input class="input is-success" type="text" placeholder="Text input">
+      <input class="input is-success" type="text" placeholder="Text input"
+        #username>
       <span class="icon is-small is-left">
         <i class="fas fa-user"></i>
       </span>
@@ -24,7 +25,7 @@
     <label class="label">Email</label>
     <div class="control has-icons-left has-icons-right">
       <input id="email_input" class="input is-danger" type="email"
-        placeholder="Email input">
+        placeholder="Email input" #email>
       <span class="icon is-small is-left">
         <i class="fas fa-envelope"></i>
       </span>
@@ -38,7 +39,7 @@
   <div class="field">
     <div class="control has-icons-left has-icons-right">
       <input id="email_input2" class="input" type="email"
-        placeholder="Repeat email">
+        placeholder="Repeat email" #email2>
       <span class="icon is-small is-left">
         <i class="fas fa-envelope"></i>
       </span>
@@ -53,7 +54,7 @@
     <label class="label">Password</label>
     <p class="control has-icons-left">
       <input id="password" class="input" type="password"
-        placeholder="Password">
+        placeholder="Password" #password>
       <span class="icon is-small is-left">
         <i class="fas fa-lock"></i>
       </span>
@@ -63,7 +64,7 @@
   <div class="field">
     <p class="control has-icons-left">
       <input id="password2" class="input" type="password"
-        placeholder="Repeat password">
+        placeholder="Repeat password" #password2>
       <span class="icon is-small is-left">
         <i class="fas fa-lock"></i>
       </span>
@@ -79,12 +80,17 @@
   <div class="field">
     <div class="control">
       <label class="checkbox">
-        <input type="checkbox">
+        <input type="checkbox" #checkbox>
         I agree to the <a href="#">terms and conditions</a>
       </label>
     </div>
   </div>
 </section>
 <footer class="modal-card-foot">
-  <button class="button is-success" (click)="signUp()">Submit</button>
+
+  <button class="button is-success" (click)="log('HOLA');
+    onSubmit(name.value,
+    username.value, email.value, email2.value, password.value,
+    password2.value, checkbox.value)">Submit</button>
+
 </footer>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthenticationService, LoginInfo, Role } from 'src/app/auth/authentication.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   isLogged: boolean = false;
   roles: Role[];
 
+  @Output() isSignInEmitter: EventEmitter<boolean> = new EventEmitter();
+
   constructor(private authService: AuthenticationService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
@@ -24,27 +26,23 @@ export class LoginComponent implements OnInit {
   }
 
 
-
-  signIn() {
-    console.log("signIn");
-  }
-
-  onSubmit() {
-
-    let username: string = "ospino";
-    let password: string = "1234567";
+  signIn(username: string, password: string) {
 
     this.authService.attemptAuth(new LoginInfo(username, password))
       .subscribe(
         data => {
           // Save data
+          console.log("SUCCESS")
+          console.log(data);
           this.tokenStorage.saveToken(data.token);
           this.tokenStorage.saveUsername(data.username);
           this.tokenStorage.saveAuthorities(data.authorities);
 
-          //
+
           this.isLogged = true;
           this.roles = this.tokenStorage.getAuthorities();
+
+          this.isSignInEmitter.emit(true);
         },
         error => {
           console.log(error);

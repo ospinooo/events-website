@@ -2,7 +2,7 @@
 <section class="modal-card-body">
   <div class="field">
     <p class="control has-icons-left has-icons-right">
-      <input class="input" type="email" placeholder="Email">
+      <input class="input" type="text" placeholder="Username" #username>
       <span class="icon is-small is-left">
         <i class="fas fa-envelope"></i>
       </span>
@@ -13,7 +13,7 @@
   </div>
   <div class="field">
     <p class="control has-icons-left">
-      <input class="input" type="password" placeholder="Password">
+      <input class="input" type="password" placeholder="Password" #password>
       <span class="icon is-small is-left">
         <i class="fas fa-lock"></i>
       </span>
@@ -26,6 +26,7 @@
       account</span></a> -->
 </section>
 <footer class="modal-card-foot">
-  <button class="button is-success" (click)="signIn()">Log In</button>
+  <button class="button is-success" (click)="signIn(username.value,
+    password.value)">Log In</button>
   <!-- <button class="button" (click)="closeModalSignIn()">Cancel</button> -->
 </footer>

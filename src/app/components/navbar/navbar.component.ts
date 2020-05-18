@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SignupInfo } from 'src/app/auth/authentication.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   is_active = false;
+  isSignIn = false;
 
-  constructor() { }
+  constructor(public tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
   }
@@ -18,7 +21,6 @@ export class NavbarComponent implements OnInit {
     if (!this.is_active) {
       document.getElementById("navbar-burger").classList.add("is-active");
       document.getElementById("navbar-menu").classList.add("is-active");
-      console.log("HELO");
       this.is_active = true;
     } else {
       document.getElementById("navbar-burger").classList.remove("is-active");
@@ -46,6 +48,27 @@ export class NavbarComponent implements OnInit {
   closeModalSignIn() {
     document.getElementById("sign_in_modal").classList.remove("is-active");
     document.getElementById("sign_in_modal").classList.remove("is-clipped");
+  }
+
+  isSignUpEmitter(isSignUp) {
+    if (isSignUp) {
+      this.closeModalSignUp();
+    }
+
+    this.isSignIn = isSignUp;
+  }
+
+  isSignInEmitter(isSignIn) {
+    if (isSignIn) {
+      this.closeModalSignIn();
+    }
+
+    this.isSignIn = isSignIn;
+  }
+
+  getUsername(): string {
+    let username: string = this.tokenStorageService.getUsername();
+    return username;
   }
 
 }

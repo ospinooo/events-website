@@ -45,7 +45,7 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
+      <div *ngIf="! tokenStorageService.isLogged()" class="navbar-item">
         <div class="buttons">
           <a class="button is-primary" (click)="openModalSignUp()">
             <strong>Sign up</strong>
@@ -55,6 +55,10 @@
           </a>
         </div>
       </div>
+
+      <div *ngIf="tokenStorageService.isLogged()" class="navbar-item">
+        {{getUsername()}}
+      </div>
     </div>
   </div>
 </nav>
@@ -63,7 +67,7 @@
 <div id="sign_up_modal" class="modal">
   <div class="modal-background" (click)="closeModalSignUp()"></div>
   <div class="modal-card">
-    <app-register></app-register>
+    <app-register (isSignUpEmitter)="isSignUpEmitter($event)"></app-register>
   </div>
 </div>
 
@@ -71,7 +75,7 @@
 <div id="sign_in_modal" class="modal">
   <div class="modal-background" (click)="closeModalSignIn()"></div>
   <div class="modal-card">
-    <app-login></app-login>
+    <app-login (isSignInEmitter)="isSignInEmitter($event)"></app-login>
   </div>
 </div>
 `
