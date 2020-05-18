@@ -8,6 +8,9 @@ enum Direction {
   DESC = "DESC"
 };
 
+
+const ROW_SIZE = 3;
+
 @Component({
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
@@ -15,7 +18,7 @@ enum Direction {
 })
 export class EventsListComponent implements OnInit {
 
-  eventsList: Event[];
+  eventsList: Event[] = [];
 
   page: number;
   sortKey: String;
@@ -43,8 +46,13 @@ export class EventsListComponent implements OnInit {
   getEvents(): void {
     this.eventsService.getEvents()
       .subscribe(eventsList => {
-        console.log("HOLAA");
         this.eventsList = eventsList.content
       });
   }
+
+  getRows(): Array<Number> {
+    return this.range(Math.ceil(this.eventsList.length / ROW_SIZE));
+  }
+
+
 }
