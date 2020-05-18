@@ -44,9 +44,13 @@ export class TokenStorageService {
   public getAuthorities(): Role[] {
     this.roles = new Array<Role>();
 
-    if (sessionStorage.getItem(TOKEN_KEY)) {
+    if (sessionStorage.getItem(TOKEN_KEY) != null) {
       JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
-        this.roles.push(Role[authority.authority]);
+        if (authority.authority == Role.ADMIN) {
+          this.roles.push(Role.ADMIN);
+        } else if (authority.authority == Role.USER) {
+          this.roles.push(Role.USER);
+        }
       });
     }
 
