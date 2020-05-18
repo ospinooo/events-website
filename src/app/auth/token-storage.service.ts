@@ -11,7 +11,7 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenStorageService {
 
-  private roles: Array<Role> = [];
+  private roles: Array<Role>;
   constructor() { }
 
   signOut() {
