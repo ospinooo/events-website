@@ -52,4 +52,12 @@ export class TokenStorageService {
 
     return this.roles;
   }
+
+  public isAdmin(): boolean {
+    return this.getAuthorities().includes(Role.ADMIN);
+  }
+
+  public isLogged(): boolean {
+    return sessionStorage.getItem(TOKEN_KEY) != null;
+  }
 }
