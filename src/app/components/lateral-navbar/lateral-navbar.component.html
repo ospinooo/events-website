@@ -24,8 +24,10 @@
   </ul> -->
   <ul class="menu-list">
     <li routerLink="/"><a> 💰 Payments</a></li>
-    <li routerLink="/profile"><a> 🙎🏻‍♂️ Profile</a></li>
-    <li routerLink="/admin"><a> 👨🏽‍💻 Admin</a></li>
+    <li *ngIf="tokenStorageService.isLogged()" routerLink="/profile"><a> 🙎🏻‍♂️
+        Profile</a></li>
+    <li *ngIf="tokenStorageService.isAdmin()" routerLink="/admin"><a> 👨🏽‍💻
+        Admin</a></li>
     <li routerLink="/about"><a> 🌐 About</a></li>
   </ul>
 </aside>

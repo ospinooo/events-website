@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-lateral-navbar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LateralNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
   }
