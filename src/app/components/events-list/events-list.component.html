@@ -44,3 +44,23 @@
     <progress class="progress is-small is-primary" max="100">15%</progress>
   </div>
 </div>
+
+<br>
+<br>
+<br>
+
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+  <a class="pagination-previous" (click)="page= page - 1">Previous</a>
+  <a class="pagination-next" (click)="page= page + 1">Next page</a>
+
+  <ul class="pagination-list">
+    <li><a class="pagination-link" aria-label="Goto page 1" (click)="page=0">1</a></li>
+    <li *ngIf="totalPages> 1"><span class="pagination-ellipsis">&hellip;</span></li>
+    <li *ngIf="totalPages> 4"><a class="pagination-link">{{getMidPages() - 1}}</a></li>
+    <li *ngIf="totalPages> 2"><a class="pagination-link is-current">{{getMidPages()}}</a></li>
+    <li *ngIf="totalPages> 3"><a class="pagination-link">{{getMidPages() + 1}}</a></li>
+    <li *ngIf="totalPages> 2"><span class="pagination-ellipsis">&hellip;</span></li>
+    <li *ngIf="totalPages> 1"><a class="pagination-link"
+        (click)="page=totalPages - 1">{{totalPages}}</a></li>
+  </ul>
+</nav>

@@ -24,6 +24,8 @@ export class EventsListComponent implements OnInit {
   sortKey: String;
   dir: Direction;
 
+  totalPages: number;
+
   /**
    * Each time we construct the events list we are going to pass in params a Search key
    */
@@ -46,7 +48,8 @@ export class EventsListComponent implements OnInit {
   getEvents(): void {
     this.eventsService.getEvents()
       .subscribe(eventsList => {
-        this.eventsList = eventsList.content
+        this.eventsList = eventsList.content;
+        this.totalPages = eventsList.totalPages;
       });
   }
 
@@ -54,5 +57,8 @@ export class EventsListComponent implements OnInit {
     return this.range(Math.ceil(this.eventsList.length / ROW_SIZE));
   }
 
+  getMidPages(): number {
+    return Math.ceil(this.totalPages / 2);
+  }
 
 }
