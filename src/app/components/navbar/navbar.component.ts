@@ -59,10 +59,10 @@ export class NavbarComponent implements OnInit {
   }
 
   isSignInEmitter(isSignIn) {
-    if (isSignIn) {
-      this.closeModalSignIn();
+    this.closeModalSignIn();
+    if (!isSignIn) {
+      this.openModalSignUp();
     }
-
     this.isSignIn = isSignIn;
   }
 
