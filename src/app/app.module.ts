@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { httpInterceptorProviders } from './auth/auth.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -37,7 +38,9 @@ import { httpInterceptorProviders } from './auth/auth.interceptor';
     BrowserModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
