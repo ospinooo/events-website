@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthenticationService, LoginInfo, Role } from 'src/app/auth/authentication.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,25 @@ export class LoginComponent implements OnInit {
 
   @Output() isSignInEmitter: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private authService: AuthenticationService, private tokenStorage: TokenStorageService) { }
+  loginForm: FormGroup;
+
+  constructor(
+    private authService: AuthenticationService,
+    private tokenStorage: TokenStorageService,
+    private formBuilder: FormBuilder) {
+    this.createForm();
+  }
+
+  noAccount() {
+    this.isSignInEmitter.emit(false);
+  }
+
+  createForm() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    })
+  }
 
   ngOnInit(): void {
     // Check if it is already logged
@@ -25,10 +43,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
-  signIn(username: string, password: string) {
-
-    this.authService.attemptAuth(new LoginInfo(username, password))
+  onSubmit() {
+    this.authService.attemptAuth(
+      new LoginInfo(
+        this.loginForm.value.username,
+        this.loginForm.value.password))
       .subscribe(
         data => {
           // Save data
@@ -37,7 +56,6 @@ export class LoginComponent implements OnInit {
           this.tokenStorage.saveToken(data.token);
           this.tokenStorage.saveUsername(data.username);
           this.tokenStorage.saveAuthorities(data.authorities);
-
 
           this.isLogged = true;
           this.roles = this.tokenStorage.getAuthorities();

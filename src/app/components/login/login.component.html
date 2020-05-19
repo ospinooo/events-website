@@ -1,32 +1,47 @@
 <header class="modal-card-head">Welcome Again! 😃</header>
-<section class="modal-card-body">
-  <div class="field">
-    <p class="control has-icons-left has-icons-right">
-      <input class="input" type="text" placeholder="Username" #username>
-      <span class="icon is-small is-left">
-        <i class="fas fa-user"></i>
-      </span>
-      <!-- <span class="icon is-small is-right">
+<form [formGroup]="loginForm" (submit)="onSubmit()" novalidate>
+  <section class="modal-card-body">
+
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+
+        <input class="input form-control" formControlName="username"
+          type="text" placeholder="Username">
+
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+
+        <!-- <span class="icon is-small is-right">
         <i class="fas fa-check"></i>
       </span> -->
-    </p>
-  </div>
-  <div class="field">
-    <p class="control has-icons-left">
-      <input class="input" type="password" placeholder="Password" #password>
-      <span class="icon is-small is-left">
-        <i class="fas fa-lock"></i>
-      </span>
-    </p>
-  </div>
-  <hr>
-  <!-- <div class="is-divider" data-content="OR"></div> -->
-  <!-- <a id="i-dont-have-account" (click)="closeModalSignIn();
-    openModalSignUp()"><span><i class="far fa-frown"></i> I don't have an
-      account</span></a> -->
-</section>
-<footer class="modal-card-foot">
-  <button class="button is-success" (click)="signIn(username.value,
-    password.value)">Log In</button>
-  <!-- <button class="button" (click)="closeModalSignIn()">Cancel</button> -->
-</footer>
+      </p>
+    </div>
+
+    <div class="field">
+      <p class="control has-icons-left">
+        <input class="input form-control" formControlName="password"
+          type="password" placeholder="Password">
+
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </p>
+    </div>
+    <hr>
+
+    <!-- <div class="is-divider" data-content="OR"></div> -->
+    <a id="i-dont-have-account" class="center" (click)="noAccount()"><span><i
+          class="far
+          fa-frown"></i> I don't have an
+        account</span></a>
+  </section>
+  <footer class="modal-card-foot">
+    <button type="submit"
+      [disabled]="loginForm.pristine || loginForm.invalid" class="button
+      is-success">
+      Submit
+    </button>
+    <!-- <button class="button" (click)="closeModalSignIn()">Cancel</button> -->
+  </footer>
+</form>
