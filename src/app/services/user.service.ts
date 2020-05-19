@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { httpOptions } from './http/http.options';
+import { tap, catchError } from 'rxjs/operators';
+import { ValidUserInfo } from './res/valid.user';
 
 
 @Injectable({
@@ -8,17 +11,60 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  // private userUrl = 'http://localhost:8080/restApi/exampleSecurity/user';
-  // private adminUrl = 'http://localhost:8080/restApi/exampleSecurity/admin';
+  private authUrl = 'http://localhost:8080/auth';
 
-  // constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  // getUserPage(): Observable<string> {
-  //   return this.http.get(this.userUrl, { responseType: 'text' });
-  // }
+  /** Valid Username: Check if the user is valid */
+  isValidUserName(username: string): Observable<ValidUserInfo> {
+    const url = `${this.authUrl}/valid?username=${username}`;
+    return this.http.get<ValidUserInfo>(url, httpOptions).pipe(
+      tap(_ => this.log(`valid username ${username}`)),
+      catchError(this.handleError<ValidUserInfo>('ValidUsername'))
+    );
+  }
 
-  // getAdminPage(): Observable<string> {
-  //   return this.http.get(this.adminUrl, { responseType: 'text' });
-  // }
+  /** Valid User: Check if the user is valid */
+  isValidUser(username: string, email: string): Observable<ValidUserInfo> {
+    const url = `${this.authUrl}/valid?username=${username}&email=${email}`;
+    return this.http.get<ValidUserInfo>(url, httpOptions).pipe(
+      tap(_ => this.log(`valid username ${username}`)),
+      catchError(this.handleError<ValidUserInfo>('ValidUsername'))
+    );
+  }
 
+  /** Valid email: Check if the user is valid */
+  isValidEmail(email: string): Observable<ValidUserInfo> {
+    const url = `${this.authUrl}/valid?email=${email}`;
+    return this.http.get<ValidUserInfo>(url, httpOptions).pipe(
+      tap(_ => this.log(`valid email ${email}`)),
+      catchError(this.handleError<ValidUserInfo>('Validemail'))
+    );
+  }
+
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /** Log a EventService message with the MessageService */
+  private log(message: string) {
+    console.log('EventService: ' + message);
+  }
 }
