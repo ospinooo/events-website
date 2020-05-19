@@ -1,7 +1,7 @@
 import { Component, OnInit, ɵConsole, EventEmitter, Output } from '@angular/core';
 import { AuthenticationService, SignupInfo } from 'src/app/auth/authentication.service';
 import { UserService } from 'src/app/services/user.service';
-import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 
 @Component({
