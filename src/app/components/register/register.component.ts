@@ -1,5 +1,8 @@
 import { Component, OnInit, ɵConsole, EventEmitter, Output } from '@angular/core';
 import { AuthenticationService, SignupInfo } from 'src/app/auth/authentication.service';
+import { UserService } from 'src/app/services/user.service';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from 'src/app/helpers/must-match.validator';
 
 @Component({
   selector: 'app-register',
@@ -19,8 +22,27 @@ export class RegisterComponent implements OnInit {
 
   @Output() isSignUpEmitter: EventEmitter<boolean> = new EventEmitter();
 
+  registerForm: FormGroup;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(
+    private authService: AuthenticationService,
+    private userService: UserService,
+    private formBuilder: FormBuilder) {
+    this.createForm();
+  }
+
+  createForm() {
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      username: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      password: ['', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$_!%*?&])[A-Za-z\d$@$!%*?&].{7,}')])],
+      password2: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      checkbox: [false, Validators.requiredTrue],
+    }, {
+      validator: MustMatch('password', 'password2')
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -28,10 +50,15 @@ export class RegisterComponent implements OnInit {
   /**
    * Submit register
    */
-  onSubmit(name: string, username: string, email: string, email2: string, password: string, password2: string, checkbox: string) {
-
+  onSubmit() {
+    console.log(this.registerForm.value);
     // data
-    this.signupInfo = new SignupInfo(name, username, email, password);
+    this.signupInfo = new SignupInfo(
+      this.registerForm.value.name,
+      this.registerForm.value.username,
+      this.registerForm.value.password,
+      this.registerForm.value.email
+    );
 
     // Register
     this.authService.signUp(this.signupInfo).subscribe(
@@ -51,18 +78,5 @@ export class RegisterComponent implements OnInit {
         // this.isSignUpFailed = true;
       }
     );
-  }
-
-
-  checkEmail2(email: string, email2: string) { }
-
-  checkPassword2(password: string, password2: string) { }
-
-  checkUsername(username: string) { }
-
-  checkEmail(email: string) { }
-
-  log(str) {
-    console.log(str);
   }
 }

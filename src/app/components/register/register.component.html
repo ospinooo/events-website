@@ -1,98 +1,301 @@
+<form [formGroup]="registerForm" (submit)="onSubmit()" novalidate>
+  <section class="modal-card-body">
+    <div class="field">
 
-<section class="modal-card-body">
-  <div class="field form-group">
-    <label class="label" for="name">Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Name" required #name
-        autocomplete="off">
+      <label class="label" for="name">Name:</label>
+
+      <div class="control">
+        <input class="input form-control" formControlName="name" type="text"
+          placeholder="Name">
+      </div>
+
+      <div *ngIf="registerForm.controls['name'].invalid &&
+        (registerForm.controls['name'].dirty ||
+        registerForm.controls['name'].touched)"
+        class="alert alert-danger">
+
+        <p *ngIf="registerForm.controls['name'].errors.required" class="help
+          is-danger hidden">
+          Name is required.
+        </p>
+
+        <p *ngIf="registerForm.controls['name'].errors.minlength" class="help
+          is-danger hidden">
+          Name is not long enough.
+        </p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="username">Username</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input form-control" formControlName="username"
+          type="text" placeholder="Username">
+
+        <!-- <input ngModel name="username" required
+          (change)="checkUsername(username.value)"
+          class="input"
+          [ngClass]="usernameValid ? 'is-success' : 'is-danger'"
+          type="text"
+          placeholder="Username"
+          #username required autocomplete="off"> -->
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+
+        <!-- <span *ngIf="usernameValid" class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+
+        <span *ngIf="!usernameValid" class="icon is-small is-right">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span> -->
+      </div>
+
+      <div *ngIf="registerForm.controls['username'].invalid &&
+        (registerForm.controls['username'].dirty ||
+        registerForm.controls['username'].touched)"
+        class="alert alert-danger">
+
+        <p *ngIf="registerForm.controls['username'].errors.required" class="help
+          is-danger hidden">
+          Username is required.
+        </p>
+
+
+        <p *ngIf="registerForm.controls['username'].errors.minlength"
+          class="help
+          is-danger hidden">
+          Username is not long enough.
+        </p>
+
+      </div>
+
+      <!-- <p *ngIf="usernameValid" class="help is-success hidden">This username is
+        available</p>
+      <p *ngIf="!usernameValid" class="help is-danger hidden">This username is
+        not
+        available</p> -->
+    </div>
+
+    <div class="field">
+      <label class="label" for="email">Email</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input form-control" formControlName="email"
+          type="email" placeholder="Email">
+
+        <!-- <input ngModel name="email" required
+          (change)="checkEmail(email.value)"
+          id="email_input"
+          class="input"
+          [ngClass]="emailValid ? 'is-success' : 'is-danger'"
+          type="email"
+          placeholder="Email input"
+          #email
+          autocomplete="off"> -->
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+
+        <!-- <span *ngIf="emailValid" class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+
+        <span *ngIf="!emailValid" class="icon is-small is-right">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span> -->
+      </div>
+      <div *ngIf="registerForm.controls['email'].invalid &&
+        (registerForm.controls['email'].dirty ||
+        registerForm.controls['email'].touched)"
+        class="alert alert-danger">
+
+        <p *ngIf="registerForm.controls['email'].errors.required" class="help
+          is-danger hidden">
+          Email is required.
+        </p>
+
+        <p *ngIf="registerForm.controls['email'].errors?.email" class="help
+          is-danger hidden">
+          Email is invalid.
+        </p>
+
+      </div>
+
+      <!-- <p *ngIf="emailValid" class="help is-success">This email is valid</p>
+      <p *ngIf="!emailValid" class="help is-danger">This email is invalid</p> -->
+    </div>
+
+    <div class="field">
+      <label class="label" for="password">Password</label>
+      <div class="control has-icons-left has-icons-right">
+
+        <input class="input form-control" formControlName="password"
+          type="password" placeholder="Password">
+
+        <!-- <input ngModel name="password" required
+          id="password"
+          class="input"
+          [ngClass]="passwordValid ? 'is-success' : 'is-danger'"
+          type="password"
+          placeholder="Password"
+          #password
+          autocomplete="off"> -->
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+
+        <!-- <span *ngIf="passwordValid" class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+
+        <span *ngIf="passwordValid" class="icon is-small is-right">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span> -->
+      </div>
+      <div *ngIf="registerForm.controls['password'].invalid &&
+        (registerForm.controls['password'].dirty ||
+        registerForm.controls['password'].touched)"
+        class="alert alert-danger">
+
+        <p *ngIf="registerForm.controls['password'].errors.required" class="help
+          is-danger hidden">
+          Password is required.
+        </p>
+
+        <p *ngIf="registerForm.controls['password'].errors.pattern"
+          class="help
+          is-danger hidden">
+          Password requires UpperCase, LowerCase, Number/SpecialChar and min 8
+          Chars.
+        </p>
+
+
+      </div>
+      <!-- <p class="help is-danger">This password is invalid</p> -->
+    </div>
+
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+
+        <input class="input form-control" formControlName="password2"
+          type="password" placeholder="Repeat password">
+
+        <!-- <input ngModel name="password2" required
+          (change)="checkPassword2(password.value, password2.value)"
+          id="password2"
+          [ngClass]="password2Valid ? 'is-success' : 'is-danger'"
+          class="input"
+          type="password"
+          placeholder="Repeat password"
+          #password2
+          autocomplete="off"> -->
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+
+        <!-- <span *ngIf="password2Valid" class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+
+        <span *ngIf="!password2Valid" class="icon is-small is-right">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span> -->
+      </div>
+      <div *ngIf="registerForm.controls['password2'].invalid &&
+        (registerForm.controls['password2'].dirty ||
+        registerForm.controls['password2'].touched)"
+        class="alert alert-danger">
+
+        <p *ngIf="registerForm.controls['password2'].errors.required"
+          class="help
+          is-danger hidden">
+          Repeat password is required.
+        </p>
+
+        <div *ngIf="registerForm.controls['password2'].errors.mustMatch"
+          class="help
+          is-danger hidden">
+          Passwords must match</div>
+      </div>
+
+
+      <!-- <p *ngIf="password2Valid" class="help is-success">The passwords are the
+        same</p>
+      <p *ngIf="!password2Valid" class="help is-danger">The passwords are not
+        the same</p> -->
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+
+          <input formControlName="checkbox" type="checkbox">
+          I agree to the <a href="#">terms and conditions</a>
+        </label>
+      </div>
+
+      <div *ngIf="registerForm.controls['checkbox'].invalid &&
+        (registerForm.controls['checkbox'].dirty ||
+        registerForm.controls['checkbox'].touched)"
+        class="alert alert-danger">
+
+        <p *ngIf="registerForm.controls['checkbox'].errors.required"
+          class="help
+          is-danger hidden">
+          Checkbox is required.
+        </p>
+
+      </div>
+    </div>
+  </section>
+  <footer class="modal-card-foot">
+
+    <button type="submit"
+      [disabled]="registerForm.pristine || registerForm.invalid" class="button
+      is-success">
+      Submit
+    </button>
+
+    <!-- <button class="button is-success" (click)="onSubmit(name.value,
+      username.value, email.value, email2.value, password.value,
+      password2.value, checkbox.value)">Submit</button> -->
+  </footer>
+</form>
+
+
+<!-- <form [formGroup]="registerForm" novalidate>
+  <div class="form-group">
+    <label>Name:</label>
+    <input class="form-control" formControlName="name" type="text">
+  </div>
+
+  <div *ngIf="registerForm.controls['name'].invalid &&
+    (registerForm.controls['name'].dirty ||
+    registerForm.controls['name'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="registerForm.controls['name'].errors.required">
+      Name is required.
     </div>
   </div>
 
-  <div class="field" (focus)="checkUsername(username.value)">
-    <label class="label">Username</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input is-success" type="text" placeholder="Username"
-        #username required autocomplete="off">
-      <span class="icon is-small is-left">
-        <i class="fas fa-user"></i>
-      </span>
-      <!-- <span class="icon is-small is-right">
-        <i class="fas fa-check"></i>
-      </span> -->
-    </div>
-    <p class="help is-success hidden">This username is available</p>
+  <div class="form-group">
+    <label>Address:</label>
+    <input class="form-control" formControlName="address" type="text">
   </div>
 
-  <div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-      <input id="email_input" class="input is-danger" type="email"
-        placeholder="Email input" #email required autocomplete="off">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-      </span>
-      <!-- <span class="icon is-small is-right">
-        <i class="fas fa-exclamation-triangle"></i>
-      </span> -->
-    </div>
-    <p class="help is-danger">This email is invalid</p>
-  </div>
-
-  <div class="field">
-    <div class="control has-icons-left has-icons-right">
-      <input id="email_input2" class="input" type="email"
-        placeholder="Repeat email" #email2 required autocomplete="off">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-      </span>
-      <!-- <span class="icon is-small is-right">
-        <i class="fas fa-exclamation-triangle"></i>
-      </span> -->
-    </div>
-    <!-- <p class="help is-danger">This email is invalid</p> -->
-  </div>
-
-  <div class="field">
-    <label class="label">Password</label>
-    <div class="control has-icons-left">
-      <input id="password" class="input is-danger" type="password"
-        placeholder="Password" #password required autocomplete="off">
-      <span class="icon is-small is-left">
-        <i class="fas fa-lock"></i>
-      </span>
-      <p class="help is-danger">This password is invalid</p>
+  <div *ngIf="registerForm.controls['address'].invalid &&
+    (registerForm.controls['address'].dirty ||
+    registerForm.controls['address'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="registerForm.controls['address'].errors.required">
+      email is required.
     </div>
   </div>
 
-  <div class="field">
-    <p class="control has-icons-left">
-      <input id="password2" class="input" type="password"
-        placeholder="Repeat password" #password2 required autocomplete="off">
-      <span class="icon is-small is-left">
-        <i class="fas fa-lock"></i>
-      </span>
-    </p>
-  </div>
-
-  <!-- <div class="field">
-    <label class="label">Description</label>
-    <div class="control">
-      <textarea class="textarea" placeholder="Textarea"></textarea>
-    </div>
-  </div> -->
-  <div class="field">
-    <div class="control">
-      <label class="checkbox">
-        <input type="checkbox" #checkbox required>
-        I agree to the <a href="#">terms and conditions</a>
-      </label>
-    </div>
-  </div>
-</section>
-<footer class="modal-card-foot">
-
-  <button class="button is-success" (click)="onSubmit(name.value,
-    username.value, email.value, email2.value, password.value,
-    password2.value, checkbox.value)">Submit</button>
-
-</footer>
+  <button type="submit"
+    [disabled]="registerForm.pristine || registerForm.invalid" class="btn
+    btn-success">
+    Save
+  </button>
+</form> -->
