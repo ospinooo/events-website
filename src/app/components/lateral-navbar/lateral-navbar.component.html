@@ -4,30 +4,56 @@
     General
   </p>
   <ul class="menu-list">
-    <li routerLink="/"><a class="is-active"> 🚀 Following events</a></li>
-    <li routerLink="/"><a> 🎟 Tickets</a></li>
-    <li routerLink="/"><a> 🎹 My events</a></li>
-    <li routerLink="/"><a> 🎶 Past events</a></li>
+    <li routerLink="/">
+      <a [ngClass]="active === 'following_events' ? 'is-active': ''"
+        (click)="newActive('following_events')"> 🚀 Following events
+      </a>
+    </li>
+    <li routerLink="/">
+      <a [ngClass]="active === 'tickets' ? 'is-active': ''"
+        (click)="newActive('tickets')"> 🎟 Tickets</a>
+    </li>
+    <li routerLink="/">
+      <a [ngClass]="active === 'my_events' ? 'is-active': ''"
+        (click)="newActive('my_events')"> 🎹 My events</a></li>
+    <li routerLink="/"><a [ngClass]="active === 'past_events' ? 'is-active': ''"
+        (click)="newActive('past_events')"> 🎶 Past events</a></li>
   </ul>
   <p class="menu-label">
     Administration
   </p>
-  <!-- <ul class="menu-list">
-    <a class="is-active">History</a>
+  <ul class="menu-list" *ngIf="tokenStorageService.isAdmin()">
+    <a routerLink="/admin" [ngClass]="active === 'admin' ? 'is-active': ''"
+      (click)="newActive('admin')">👨🏽‍💻 Admin</a>
     <li>
       <ul>
-        <li><a>Members</a></li>
-        <li><a>Plugins</a></li>
-        <li><a>Add a member</a></li>
+        <li>
+          <a [ngClass]="active === 'new_event' ? 'is-active': ''"
+            (click)="newActive('new_event')">🎯 New Event</a>
+        </li>
+        <li>
+          <a [ngClass]="active === 'edit_events' ? 'is-active': ''"
+            (click)="newActive('edit_events')">🥁 Edit Event</a>
+        </li>
       </ul>
     </li>
-  </ul> -->
+  </ul>
+
+
   <ul class="menu-list">
-    <li routerLink="/"><a> 💰 Payments</a></li>
-    <li *ngIf="tokenStorageService.isLogged()" routerLink="/profile"><a> 🙎🏻‍♂️
-        Profile</a></li>
-    <li *ngIf="tokenStorageService.isAdmin()" routerLink="/admin"><a> 👨🏽‍💻
-        Admin</a></li>
-    <li routerLink="/about"><a> 🌐 About</a></li>
+    <li routerLink="/">
+      <a [ngClass]="active === 'payments' ? 'is-active': ''"
+        (click)="newActive('payments')"> 💰 Payments</a>
+    </li>
+    <li *ngIf="tokenStorageService.isLogged()" routerLink="/profile">
+      <a
+        [ngClass]="active === 'profile' ? 'is-active': ''"
+        (click)="newActive('profile')"> 🙎🏻‍♂️
+        Profile</a>
+    </li>
+    <li routerLink="/about">
+      <a [ngClass]="active === 'about' ? 'is-active': ''"
+        (click)="newActive('about')"> 🌐 About</a>
+    </li>
   </ul>
 </aside>
