@@ -6,6 +6,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CreateEventComponent } from './components/events/create-event/create-event.component';
+import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'event/create', component: CreateEventComponent },
-  { path: 'event/edit', component: CreateEventComponent }
+  { path: 'event/edit', component: EditEventComponent }
 ];
 
 @NgModule({
