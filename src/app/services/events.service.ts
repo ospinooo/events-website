@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { PageableEvent } from './res/events.interface';
+import { EventCreate } from './req/event.create';
 
 
 const httpOptions = {
@@ -13,10 +14,6 @@ const httpOptions = {
   })
 };
 
-
-export class Pageable {
-
-}
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +36,14 @@ export class EventsService {
     return this.http.get<Event>(url, httpOptions).pipe(
       tap(_ => this.log(`fetched event id=${id}`)),
       catchError(this.handleError<Event>(`getEvent id=${id}`))
+    );
+  }
+
+  /** POST Event */
+  createEvent(event: EventCreate): Observable<Event> {
+    return this.http.post<Event>(this.eventsUrl, event, httpOptions).pipe(
+      tap(_ => this.log(`event created`)),
+      catchError(this.handleError<Event>(`Error event create`))
     );
   }
 
