@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { httpOptions } from './http/http.options';
 import { tap, catchError } from 'rxjs/operators';
 import { ValidUserInfo } from './res/valid.user';
+import { User } from './res/user.interface';
+import { TokenStorageService } from '../auth/token-storage.service';
 
 
 @Injectable({
@@ -12,8 +14,9 @@ import { ValidUserInfo } from './res/valid.user';
 export class UserService {
 
   private authUrl = 'http://localhost:8080/auth';
+  private usersUrl = 'http://localhost:8080/users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   /** Valid Username: Check if the user is valid */
   isValidUserName(username: string): Observable<ValidUserInfo> {
@@ -42,6 +45,14 @@ export class UserService {
     );
   }
 
+  /** Get User Data */
+  getUserData(username: string): Observable<User> {
+    const url = `${this.usersUrl}/username/${username}`;
+    return this.http.get<User>(url, httpOptions).pipe(
+      tap(_ => this.log(`User = ${username}`)),
+      catchError(this.handleError<User>('UserData'))
+    );
+  }
 
   /**
    * Handle Http operation that failed.
