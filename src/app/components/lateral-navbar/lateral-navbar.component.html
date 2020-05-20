@@ -27,11 +27,11 @@
       (click)="newActive('admin')">👨🏽‍💻 Admin</a>
     <li>
       <ul>
-        <li>
+        <li routerLink="/event/create">
           <a [ngClass]="active === 'new_event' ? 'is-active': ''"
             (click)="newActive('new_event')">🎯 New Event</a>
         </li>
-        <li>
+        <li routerLink="event/edit">
           <a [ngClass]="active === 'edit_events' ? 'is-active': ''"
             (click)="newActive('edit_events')">🥁 Edit Event</a>
         </li>

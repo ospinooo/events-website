@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
 import { LateralNavbarComponent } from './components/lateral-navbar/lateral-navbar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { EventCardComponent } from './components/event-card/event-card.component';
-import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { EventCardComponent } from './components/events/event-card/event-card.component';
+import { EventDetailsComponent } from './components/events/event-details/event-details.component';
 import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -17,6 +17,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { httpInterceptorProviders } from './auth/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateEventComponent } from './components/events/create-event/create-event.component';
+import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     AdminComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CreateEventComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
