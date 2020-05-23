@@ -20,4 +20,8 @@ export class LateralNavbarComponent implements OnInit {
   newActive(active: string) {
     this.active = active;
   }
+
+  logout(): void {
+    this.tokenStorageService.signOut();
+  }
 }

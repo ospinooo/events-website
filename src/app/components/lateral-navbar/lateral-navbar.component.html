@@ -34,9 +34,9 @@
           <a [ngClass]="active === 'new_event' ? 'is-active': ''"
             (click)="newActive('new_event')">🎯 New Event</a>
         </li>
-        <li routerLink="event/edit">
-          <a [ngClass]="active === 'edit_events' ? 'is-active': ''"
-            (click)="newActive('edit_events')">🥁 Edit Event</a>
+        <li routerLink="events/created">
+          <a [ngClass]="active === 'my_events_created' ? 'is-active': ''"
+            (click)="newActive('my_events_created')">🥁 My Events Created</a>
         </li>
       </ul>
     </li>
@@ -57,6 +57,10 @@
     <li routerLink="/about">
       <a [ngClass]="active === 'about' ? 'is-active': ''"
         (click)="newActive('about')"> 🌐 About</a>
+    </li>
+    <li *ngIf="tokenStorageService.isLogged()">
+      <a [ngClass]="active === 'logout' ? 'is-active': ''"
+        (click)="newActive('logout'); logout()"> 👋🏼 Logout</a>
     </li>
   </ul>
 </aside>
