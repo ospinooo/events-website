@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'event/create', component: CreateEventComponent },
-  { path: 'event/edit', component: EditEventComponent }
+  { path: 'event/edit/:id', component: EditEventComponent }
 ];
 
 @NgModule({
