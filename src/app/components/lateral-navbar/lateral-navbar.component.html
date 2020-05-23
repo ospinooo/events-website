@@ -58,7 +58,7 @@
       <a [ngClass]="active === 'about' ? 'is-active': ''"
         (click)="newActive('about')"> 🌐 About</a>
     </li>
-    <li *ngIf="tokenStorageService.isLogged()">
+    <li *ngIf="tokenStorageService.isLogged()" routerLink="/">
       <a [ngClass]="active === 'logout' ? 'is-active': ''"
         (click)="newActive('logout'); logout()"> 👋🏼 Logout</a>
     </li>
