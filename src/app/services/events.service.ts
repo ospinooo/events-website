@@ -39,6 +39,14 @@ export class EventsService {
     );
   }
 
+  updateEvent(event: Event, id: number): Observable<Event> {
+    const url = `${this.eventsUrl}/${id}`;
+    return this.http.put<Event>(url, event, httpOptions).pipe(
+      tap(_ => this.log(`event updated id=${id}`)),
+      catchError(this.handleError<Event>(`updateEvent id=${id}`))
+    );
+  }
+
   /** POST Event */
   createEvent(event: EventCreate): Observable<Event> {
     return this.http.post<Event>(this.eventsUrl, event, httpOptions).pipe(
