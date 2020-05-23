@@ -15,11 +15,6 @@ export class EventDetailsComponent implements OnInit {
 
   id: number;
   sub;
-  fees = [
-    { 'name': "fee1" },
-    { 'name': "fee2" },
-    { 'name': "fee3" }
-  ];
 
   constructor(private route: ActivatedRoute, private eventsService: EventsService) {
 
@@ -48,5 +43,9 @@ export class EventDetailsComponent implements OnInit {
 
   closeBuyTicketsModal() {
     document.getElementById("buy_tickets_modal").classList.remove("is-active");
+  }
+
+  log(s) {
+    console.log(s);
   }
 }
