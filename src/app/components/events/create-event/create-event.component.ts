@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Fee } from 'src/app/models/fee.model';
 import { FeesService } from 'src/app/services/fees.service';
 import { EventsService } from 'src/app/services/events.service';
-import { FeeCreate, EventCreate, EventEdit } from 'src/app/services/req/event.create';
+import { FeeCreate, EventCreate } from 'src/app/services/req/event.create';
 import Bulma from '@vizuaalog/bulmajs';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 @Component({
@@ -50,7 +50,7 @@ export class CreateEventComponent implements OnInit {
             body: 'Event created correctly! 🎉',
             color: 'success',
             isDismissable: true,
-            parent: document.getElementById('notification-created'),
+            parent: document.getElementById('notification'),
           }).show();
           this.reset();
           this.fees = []
