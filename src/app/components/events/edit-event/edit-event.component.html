@@ -1,1 +1,167 @@
-<p>edit-event works!</p>
+
+<div id="notification-created"></div>
+<form [formGroup]="editEventForm" (submit)="onSubmit()" novalidate>
+  <section class="modal-card-body">
+    <div class="field">
+
+      <label class="label" for="title">Title:</label>
+
+      <div class="control">
+        <input class="input form-control" formControlName="title" type="text"
+          placeholder="Title" #title>
+      </div>
+
+      <div *ngIf="editEventForm.controls['title'].invalid &&
+        (editEventForm.controls['title'].dirty ||
+        editEventForm.controls['title'].touched)"
+        class="alert alert-danger">
+
+        <p *ngIf="editEventForm.controls['title'].errors.required" class="help
+          is-danger hidden">
+          Title is required.
+        </p>
+
+        <p *ngIf="editEventForm.controls['title'].errors.minlength"
+          class="help is-danger hidden">
+          Title is not long enough.
+        </p>
+      </div>
+    </div>
+
+    <div class="field">
+
+      <label class="label" for="subtitle">Subtitle:</label>
+
+      <div class="control">
+        <input class="input form-control" formControlName="subtitle" type="text"
+          placeholder="Subtitle" #subtitle>
+      </div>
+
+      <div *ngIf="editEventForm.controls['subtitle'].invalid &&
+        (editEventForm.controls['subtitle'].dirty ||
+        editEventForm.controls['subtitle'].touched)"
+        class="alert alert-danger">
+
+        <p *ngIf="editEventForm.controls['subtitle'].errors.required"
+          class="help
+          is-danger hidden">
+          Subtitle is required.
+        </p>
+
+        <p *ngIf="editEventForm.controls['subtitle'].errors.minlength"
+          class="help
+          is-danger hidden">
+          Subtitle is not long enough.
+        </p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="description">Description</label>
+      <div class="control">
+        <textarea class="textarea" placeholder="Textarea"
+          formControlName="description" placeholder="Description" #description></textarea>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Fees</label>
+
+      <div class="list">
+
+        <div *ngIf="getFees().length == 0" class="list-item" style="color: red">Add
+          Fees
+          please</div>
+
+        <div *ngFor="let fee of getFees(); let i= index" class="list-item">
+
+          <div class="columns">
+            <div class="column is-four-fifths">
+              <div class="field-body">
+                <div class="field">
+                  <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Title"
+                      #titlefee value="{{fee.title}}">
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control is-expanded">
+                    <input class="input" type="number"
+                      placeholder="Price" #pricefee value="{{fee.price}}">
+                  </p>
+                </div>
+
+              </div>
+              <div class="field is-horizontal">
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control">
+                      <textarea class="textarea" placeholder="Description"
+                        #descriptionfee value="{{fee.description}}"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="column">
+              <span class="center">
+                <i (click)="deleteFee(i)" class="fas fa-trash hover-red"></i>
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="fee-form">
+          <label class="label is-small">Add Fee:</label>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded">
+                <input class="input" type="text" placeholder="Title" #titlefee>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control is-expanded">
+                <input class="input" type="number"
+                  placeholder="Price" #pricefee>
+              </p>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <textarea class="textarea" placeholder="Description"
+                    #descriptionfee></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="right">
+            <div class="button is-small is-success"
+              (click)="addFee(titlefee.value, pricefee.value,
+              descriptionfee.value);
+              titlefee.value= '';
+              pricefee.value= '';
+              descriptionfee.value= ''">Add
+              Fee
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <button type="submit"
+    [disabled]="editEventForm.invalid ||
+    getFees().length== 0"
+    class="button center
+    is-info">
+    Update
+  </button>
+
+</form>
