@@ -81,7 +81,7 @@ export class EditEventComponent implements OnInit {
             body: 'Event updated correctly! 🎉',
             color: 'success',
             isDismissable: true,
-            parent: document.getElementById('notification-created'),
+            parent: document.getElementById('notification'),
           }).show();
         }
       )
