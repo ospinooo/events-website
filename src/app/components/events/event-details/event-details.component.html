@@ -1,5 +1,13 @@
-<div id="edit-button" routerLink="/event/edit/{{id}}">
-  <a class="button is-info is-small is-right">Edit</a>
+<div class="columns">
+  <div class="column">
+    <button class="button is-success"
+      (click)="openBuyTicketsModal()">Buy Tickets</button>
+  </div>
+  <div class="column">
+    <div id="edit-button" routerLink="/event/edit/{{id}}">
+      <a class="button is-info is-small is-right">Edit</a>
+    </div>
+  </div>
 </div>
 <hr>
 <div class="card">
@@ -68,7 +76,7 @@
   <div class="modal" id="buy_tickets_modal">
     <div class="modal-background" (click)="closeBuyTicketsModal()"></div>
     <div class="modal-card">
-      <app-payment-modal></app-payment-modal>
+      <app-payment-modal [event]="event_model"></app-payment-modal>
     </div>
   </div>
 </div>
