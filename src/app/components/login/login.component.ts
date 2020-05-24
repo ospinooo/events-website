@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthenticationService, LoginInfo, Role } from 'src/app/auth/authentication.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import Bulma from '@vizuaalog/bulmajs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
     // Check if it is already logged
     if (this.tokenStorage.getToken()) {
       this.isLogged = true;
+
       this.roles = this.tokenStorage.getAuthorities();
     }
   }
@@ -61,6 +63,13 @@ export class LoginComponent implements OnInit {
           this.roles = this.tokenStorage.getAuthorities();
 
           this.isSignInEmitter.emit(true);
+
+          Bulma.create('notification', {
+            body: 'Welcome again to MusicMeets! 🎉',
+            color: 'success',
+            isDismissable: true,
+            parent: document.getElementById('notification'),
+          }).show();
         },
         error => {
           console.log(error);

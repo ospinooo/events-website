@@ -3,7 +3,7 @@ import { AuthenticationService, SignupInfo } from 'src/app/auth/authentication.s
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
-
+import Bulma from '@vizuaalog/bulmajs';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -69,6 +69,13 @@ export class RegisterComponent implements OnInit {
         this.isSignUpEmitter.emit(true);
         // this.isSignedUp = true;
         // this.isSignUpFailed = false;
+        Bulma.create('notification', {
+          body: 'Welcome to MusicMeets! 🎉',
+          color: 'success',
+          isDismissable: true,
+          parent: document.getElementById('notification'),
+        }).show();
+
       },
       error => {
         // Error
