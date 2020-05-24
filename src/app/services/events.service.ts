@@ -39,6 +39,14 @@ export class EventsService {
     );
   }
 
+  getEventsByTitle(title: string): Observable<PageableEvent> {
+    const url = `${this.eventsUrl}?search=${title}`
+    return this.http.get<PageableEvent>(url, httpOptions).pipe(
+      tap(_ => this.log(`fetched event id=${title}`)),
+      catchError(this.handleError<PageableEvent>(`getEvent id=${title}`))
+    );
+  }
+
   updateEvent(event: Event, id: number): Observable<Event> {
     const url = `${this.eventsUrl}/${id}`;
     return this.http.put<Event>(url, event, httpOptions).pipe(

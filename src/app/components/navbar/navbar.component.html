@@ -45,6 +45,28 @@
     </div>
 
     <div class="navbar-end">
+      <div class="dropdown is-active search-bar">
+
+        <div class="control">
+          <input class="input" type="text" placeholder="Find event"
+            (keydown)="getEventsByTitle(searchEventInput.value)"
+            #searchEventInput>
+        </div>
+
+        <div *ngIf="events.length> 0" class="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+
+            <a *ngFor="let event of events"
+              routerLink="/events/{{event.id}}"
+              class="dropdown-item"
+              (click)="events= []; searchEventInput.value= ''">
+              {{event.title}}
+            </a>
+          </div>
+        </div>
+
+      </div>
+
       <div *ngIf="! tokenStorageService.isLogged()" class="navbar-item">
         <div class="buttons">
           <a class="button is-primary" (click)="openModalSignUp()">

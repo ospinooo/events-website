@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SignupInfo } from 'src/app/auth/authentication.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { EventsService } from 'src/app/services/events.service';
+import { Event } from 'src/app/models/event.model';
 
 @Component({
   selector: 'app-navbar',
@@ -12,9 +14,22 @@ export class NavbarComponent implements OnInit {
   is_active = false;
   isSignIn = false;
 
-  constructor(public tokenStorageService: TokenStorageService) { }
+  events: Event[];
+
+  constructor(public tokenStorageService: TokenStorageService,
+    private eventsService: EventsService) {
+    this.events = []
+  }
 
   ngOnInit(): void {
+
+  }
+
+  getEventsByTitle(title: string) {
+    this.eventsService.getEventsByTitle(title)
+      .subscribe(eventsList => {
+        this.events = eventsList.content;
+      });
   }
 
   collapse() {
