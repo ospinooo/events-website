@@ -24,3 +24,12 @@
   justify-content: right;
   align-items: right;
 }
+
+.card {
+  padding-top: 20px;
+}
+
+
+.content {
+  padding-right: 20px
+}
