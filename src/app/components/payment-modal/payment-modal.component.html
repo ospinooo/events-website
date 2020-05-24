@@ -2,10 +2,10 @@
   <nav class="breadcrumb is-centered has-succeeds-separator"
     aria-label="breadcrumbs">
     <ul>
-      <li [className]="step_id == 0 ? 'is-active': ''"><a (click)="step_id= 0">Tickets</a></li>
-      <li [className]="step_id == 1 ? 'is-active': ''"><a (click)="step_id= 1">Documentation</a></li>
-      <li [className]="step_id == 2 ? 'is-active': ''"><a (click)="step_id= 2">Checkout</a></li>
-      <li [className]="step_id == 3 ? 'is-active': ''"><a (click)="step_id= 3">Confirmation</a></li>
+      <li [className]="step_id == 0 ? 'is-active': ''"><a>Tickets</a></li>
+      <li [className]="step_id == 1 ? 'is-active': ''"><a>Documentation</a></li>
+      <li [className]="step_id == 2 ? 'is-active': ''"><a>Checkout</a></li>
+      <li [className]="step_id == 3 ? 'is-active': ''"><a>Confirmation</a></li>
     </ul>
   </nav>
 </header>
@@ -13,14 +13,21 @@
   <div class="content">
     <div id="select-number-tickets" [style.display]="step_id != 0 ? 'none' :
       ''">
-      <div *ngFor="let fee of [{name:2, id:1, price: 2}]" class="control">
-        <br>
-        <label class="label">Tickets for the fee {{fee.name}}: </label>
-        <div class="select">
-          <select (change)="changeTotalNumber($event, fee.id)">
-            <option *ngFor="let op of arrayOne(11); let i= index;"
-              value="{{i}}">{{i}}</option>
-          </select>
+      <div *ngFor="let fee of event.fees; let j= index" class="control">
+
+        <div class="columns">
+          <div class="column is-10">
+            <label class="label">{{fee.title}} - {{fee.price}}: </label>
+            <span class="help">{{fee.description}}</span>
+          </div>
+          <div class="column">
+            <div class="select">
+              <select (change)="changeTotalNumber($event, fee.id, j)">
+                <option *ngFor="let op of arrayOne(11); let i= index;"
+                  value="{{i}}">{{i}}</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -107,7 +114,22 @@
       'none' : ''"><i class="fas fa-check fa-10x is-success"></i></div>
   </div>
 </section>
-<footer id="footer-modal" class="modal-card-foot">
-  <button id="continue-button" class="button is-success" (click)="continue()"
-    [style.display]="step_id == 3 ? 'none' : ''">Continue</button>
+<footer class="modal-card-foot">
+  <div class="columns" id="footer-modal">
+    <div class="column">
+      <button class="button is-info"
+        (click)="back()"
+        [disabled]="step_id == 0">Back</button>
+    </div>
+    <div class="column" id="continue-button">
+      <p *ngIf="this.total_people>10" class="help is-danger max-10-help">
+        Max is 10.
+      </p>
+      <button class="button is-success"
+        (click)="continue()"
+        [disabled]="step_id == 3 || this.total_people == 0 || this.total_people>10">
+        Continue
+      </button>
+    </div>
+  </div>
 </footer>

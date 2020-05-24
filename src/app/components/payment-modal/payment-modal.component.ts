@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Event } from "../../models/event.model";
+import Bulma from '@vizuaalog/bulmajs';
 
 @Component({
   selector: 'app-payment-modal',
@@ -9,7 +10,8 @@ import { Event } from "../../models/event.model";
 export class PaymentModalComponent implements OnInit {
 
 
-  event: Event;
+  @Input() event: Event;
+
   step_id: number;
   total: number;
   total_people: number
@@ -22,11 +24,12 @@ export class PaymentModalComponent implements OnInit {
   ngOnInit(): void {
     this.step_id = 0;
     this.total = 0;
-    // this.fee_tickets = new Array<>(this.event.fees.size();
+    this.fee_tickets = Array<number>(this.event.fees.length).fill(0);
   }
 
-  changeTotalNumber(event: any, fee: any) {
-    this.total_people = +event.target.value;
+  changeTotalNumber(event: any, fee: any, i: number) {
+    this.fee_tickets[i] = +event.target.value;
+    this.total_people = this.fee_tickets.reduce((p, c) => p + c);
     console.log(this.total_people);
   }
 
@@ -42,7 +45,21 @@ export class PaymentModalComponent implements OnInit {
     this.step_id += 1;
   }
 
+  back() {
+    this.step_id -= 1;
+  }
+
   arrayOne(n: number): any[] {
     return Array(n);
+  }
+
+  pay() {
+    Bulma.create('notification', {
+      body: 'Welcome to MusicMeets! 🎉',
+      color: 'success',
+      isDismissable: true,
+      parent: document.getElementById('notification'),
+    }).show();
+
   }
 }
