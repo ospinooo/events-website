@@ -47,29 +47,44 @@
         <div class="column"><label class="label">Name</label></div>
         <div class="column"><label class="label">Id</label></div>
       </div>
-      <div *ngFor="let people of arrayOne(this.total_people); let i= index;">
-        <!-- <label class="label">Person {{i}}</label> -->
-        <div class="columns">
-          <div class="column"><input class="input" type="text" placeholder="e.g
-              Pablo Ospino"></div>
-          <div class="column"><input class="input" type="tel" placeholder="e.g.
-              71234567P"></div>
+      <form>
+        <div *ngFor="let people of arrayOne(this.total_people); let i= index;">
+          <!-- <label class="label">Person {{i}}</label> -->
+          <div class="columns">
+            <div class="column">
+              <input
+                class="input username-ticket" type="text"
+                (change)="updateAssistants()"
+                placeholder="e.g Pablo Ospino" required>
+            </div>
+            <div class="column">
+              <input
+                class="input userid-ticket"
+                type="tel"
+                (change)="updateAssistants()"
+                placeholder="e.g.
+                71234567P" required>
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
 
     <div id="payment-checkout" [style.display]="step_id != 2 ? 'none' : ''">
       <div class="field">
         <label class="label">Name</label>
         <div class="control">
-          <input class="input" type="name" placeholder="e.g. Pablo Ospino">
+          <input id="checkout-name" class="input" (focus)="updateCardPayment()"
+            type="name" placeholder="e.g. Pablo Ospino">
         </div>
       </div>
 
       <div class="field">
         <label class="label">Card Number</label>
         <div class="control">
-          <input class="input" type="tel" pattern="[0-9\s]{13,19}"
+          <input id="checkout-cardnumber" class="input"
+            (focus)="updateCardPayment()" type="tel"
+            pattern="[0-9\s]{13,19}"
             maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
         </div>
       </div>
@@ -77,7 +92,9 @@
       <div class="field">
         <label class="label">CVV</label>
         <div class="control">
-          <input class="input" type="tel" maxlength="3" pattern="\d{3}"
+          <input id="checkout-cvv" class="input" (focus)="updateCardPayment()"
+            type="tel"
+            maxlength="3" pattern="\d{3}"
             placeholder="e.g.
             123">
         </div>
@@ -88,7 +105,9 @@
           <div class="field">
             <label class="label">Month</label>
             <div class="control">
-              <input class="input" type="tel" maxlength="2"
+              <input id="checkout-month" class="input"
+                (focus)="updateCardPayment()" type="tel"
+                maxlength="2"
                 pattern="[01|02|03|04|05|06|07|08|09|10|11|12]"
                 placeholder="e.g.
                 06">
@@ -99,7 +118,8 @@
           <div class="field">
             <label class="label">Year</label>
             <div class="control">
-              <input class="input" type="tel"
+              <input id="checkout-year" class="input"
+                (focus)="updateCardPayment()" type="tel"
                 pattern="\d{2}"
                 maxlength="2"
                 placeholder="22">
@@ -127,7 +147,9 @@
       </p>
       <button class="button is-success"
         (click)="continue()"
-        [disabled]="step_id == 3 || this.total_people == 0 || this.total_people>10">
+        [disabled]="step_id == 3 || this.total_people == 0 || this.total_people>
+        10 || (!isDocumentationfilled && step_id == 1) || (step_id==2 &&
+        !isCheckoutFilled)">
         Continue
       </button>
     </div>

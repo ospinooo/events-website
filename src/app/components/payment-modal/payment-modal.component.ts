@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Event } from "../../models/event.model";
 import Bulma from '@vizuaalog/bulmajs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-payment-modal',
@@ -11,13 +12,19 @@ export class PaymentModalComponent implements OnInit {
 
 
   @Input() event: Event;
+  @Output() close: EventEmitter<boolean> = new EventEmitter();
 
   step_id: number;
   total: number;
   total_people: number
   fee_tickets: Array<number>;
+  assistants: Array<Object>;
+  isDocumentationfilled: boolean = false;
+  isCheckoutFilled: boolean = false;
 
-  constructor() {
+  userInfoForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
     this.total_people = 0;
   }
 
@@ -30,7 +37,35 @@ export class PaymentModalComponent implements OnInit {
   changeTotalNumber(event: any, fee: any, i: number) {
     this.fee_tickets[i] = +event.target.value;
     this.total_people = this.fee_tickets.reduce((p, c) => p + c);
-    console.log(this.total_people);
+  }
+
+  updateAssistants() {
+    var usernameTickets = document.getElementsByClassName("username-ticket");
+    var userIdTickets = document.getElementsByClassName("userid-ticket");
+
+    let i = 0;
+    let blank = false;
+    while (i < this.total_people && !blank) {
+      var username: any = usernameTickets[i];
+      var id: any = userIdTickets[i];
+      blank = username.value == '' || id.value == '';
+      i = i + 1;
+    }
+
+    this.isDocumentationfilled = !blank;
+  }
+
+  updateCardPayment() {
+    let name: any = document.getElementById("checkout-name");
+    let cardnumber: any = document.getElementById("checkout-cardnumber");
+    let cvv: any = document.getElementById("checkout-cvv");
+    let month: any = document.getElementById("checkout-month");
+    let year: any = document.getElementById("checkout-year");
+
+    if (name.value != '' && cardnumber.value != '' && cvv.value != '' && month.value != '' && year.value != '') {
+      this.isCheckoutFilled = true;
+    }
+
   }
 
   getTotalPrice(): number {
@@ -43,6 +78,9 @@ export class PaymentModalComponent implements OnInit {
 
   continue() {
     this.step_id += 1;
+    if (this.step_id == 3) {
+      this.pay();
+    }
   }
 
   back() {
@@ -55,11 +93,10 @@ export class PaymentModalComponent implements OnInit {
 
   pay() {
     Bulma.create('notification', {
-      body: 'Welcome to MusicMeets! 🎉',
+      body: `You purchased tickets for ${this.event.title}! 🎉`,
       color: 'success',
       isDismissable: true,
       parent: document.getElementById('notification'),
     }).show();
-
   }
 }
