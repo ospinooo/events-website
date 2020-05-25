@@ -19,7 +19,8 @@ import { httpInterceptorProviders } from './auth/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateEventComponent } from './components/events/create-event/create-event.component';
 import { EditEventComponent } from './components/events/edit-event/edit-event.component';
-
+import { TicketsListComponent } from './components/tickets-list/tickets-list.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EditEventComponent } from './components/events/edit-event/edit-event.co
     RegisterComponent,
     LoginComponent,
     CreateEventComponent,
-    EditEventComponent
+    EditEventComponent,
+    TicketsListComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { EditEventComponent } from './components/events/edit-event/edit-event.co
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InfiniteScrollModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
