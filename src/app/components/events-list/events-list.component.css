@@ -19,3 +19,12 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.display {
+  display: flex;
+}
+
+.dont-display {
+  display: none;
+}

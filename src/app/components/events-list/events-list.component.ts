@@ -20,17 +20,21 @@ export class EventsListComponent implements OnInit {
 
   eventsList: Event[] = [];
 
+  PAGESIZE: number = 9;
+
   page: number;
   sortKey: String;
   dir: Direction;
 
   totalPages: number;
+  currentNumberPages: number;
 
   /**
    * Each time we construct the events list we are going to pass in params a Search key
    */
   constructor(private eventsService: EventsService) {
-
+    this.page = 0;
+    this.currentNumberPages = 1;
   }
 
   ngOnInit(): void {
@@ -59,6 +63,36 @@ export class EventsListComponent implements OnInit {
 
   getMidPages(): number {
     return Math.ceil(this.totalPages / 2);
+  }
+
+  onScrollDown(ev) {
+    console.log('scrolled down!!', ev);
+
+    // Activate loading.
+    document.getElementById("loading-contianer").style.display = 'flex';
+
+    // add another 10 items
+    this.eventsService.getEvents(this.currentNumberPages)
+      .subscribe(data => {
+        this.eventsList = this.eventsList.concat(data.content);
+        if (data.content.length > 0) {
+          this.currentNumberPages += 1;
+        }
+        // delete loading.
+        document.getElementById("loading-contianer").style.display = 'none';
+      })
+  }
+
+  onUp(ev) {
+    console.log('scrolled up!', ev);
+    // Delete the rest
+    this.eventsList = this.eventsList.filter((e, i) => i < this.PAGESIZE)
+    // Reset
+    this.currentNumberPages = 1;
+  }
+
+  getCurrentNumberPages() {
+    return Array(this.currentNumberPages);
   }
 
 }

@@ -23,6 +23,7 @@
     "bootstrap": "^4.4.1",
     "bulma": "^0.8.2",
     "bulma-o-steps": "^1.0.9",
+    "ngx-infinite-scroll": "^9.0.0",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.10.13",
     "tslib": "^1.10.0",

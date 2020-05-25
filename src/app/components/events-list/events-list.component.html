@@ -1,58 +1,53 @@
-<div class="container is-fluid">
 
-  <div class="columns">
-    <div *ngIf="eventsList.length> 0" class="column">
-      <app-event-card [event_model]="eventsList[0]"></app-event-card></div>
-    <div *ngIf="eventsList.length> 1" class="column">
-      <app-event-card [event_model]="eventsList[1]"></app-event-card></div>
-    <div *ngIf="eventsList.length> 2" class="column">
-      <app-event-card [event_model]="eventsList[2]"></app-event-card></div>
-  </div>
-  <div class="columns">
-    <div *ngIf="eventsList.length> 3" class="column">
-      <app-event-card [event_model]="eventsList[3]"></app-event-card></div>
-    <div *ngIf="eventsList.length> 4" class="column">
-      <app-event-card [event_model]="eventsList[4]"></app-event-card></div>
-    <div *ngIf="eventsList.length> 5" class="column">
-      <app-event-card [event_model]="eventsList[5]"></app-event-card></div>
-  </div>
-  <div class="columns">
-    <div *ngIf="eventsList.length> 6" class="column">
-      <app-event-card [event_model]="eventsList[6]"></app-event-card></div>
-    <div *ngIf="eventsList.length> 7" class="column">
-      <app-event-card [event_model]="eventsList[7]"></app-event-card></div>
-    <div *ngIf="eventsList.length> 8" class="column">
-      <app-event-card [event_model]="eventsList[8]"></app-event-card></div>
+
+<div class="container is-fluid" *ngIf="eventsList.length>0">
+  <div class="search-results"
+    data-infinite-scroll
+    debounce
+    (scrolled)="onScrollDown($event)"
+    (scrolledUp)="onUp($event)">
+
+    <div *ngFor="let j of getCurrentNumberPages(); let i= index">
+      <div class="columns">
+        <div *ngIf="eventsList.length> 0 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[0 + i*PAGESIZE]"></app-event-card></div>
+        <div *ngIf="eventsList.length> 1 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[1 + i*PAGESIZE]"></app-event-card></div>
+        <div *ngIf="eventsList.length> 2 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[2 + i*PAGESIZE]"></app-event-card></div>
+      </div>
+      <div class="columns">
+        <div *ngIf="eventsList.length> 3 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[3 + i*PAGESIZE]"></app-event-card></div>
+        <div *ngIf="eventsList.length> 4 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[4 + i*PAGESIZE]"></app-event-card></div>
+        <div *ngIf="eventsList.length> 5 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[5 + i*PAGESIZE]"></app-event-card></div>
+      </div>
+      <div class="columns">
+        <div *ngIf="eventsList.length> 6 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[6 + i*PAGESIZE]"></app-event-card>
+        </div>
+        <div *ngIf="eventsList.length> 7 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[7 + i*PAGESIZE]"></app-event-card></div>
+        <div *ngIf="eventsList.length> 8 + i*PAGESIZE" class="column">
+          <app-event-card [event_model]="eventsList[8 + i*PAGESIZE]"></app-event-card></div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="loading-contianer" id="loading-contianer"
+      *ngIf="eventsList.length>0">
+      <div class="loading">
+        <progress class="progress is-small is-primary" max="100">15%</progress>
+      </div>
+    </div>
+    <br>
+    <span *ngIf="eventsList.length>0" class="center">No more events </span>
   </div>
 </div>
 
-<div class="center" style="display:none">
+<div class="center" [ngClass]="eventsList.length == 0 ? 'display'
+  :'dont-display'">
   <div *ngIf="eventsList.length == 0">No events 😩</div>
 </div>
-
-<div class="loading-contianer" style="display:none;">
-  <div class="loading">
-    <progress class="progress is-small is-primary" max="100">15%</progress>
-  </div>
-</div>
-
-<br>
-<br>
-<br>
-
-<nav *ngIf="totalPages> 1" class="pagination is-centered" role="navigation"
-  aria-label="pagination">
-  <a class="pagination-previous" (click)="page= page - 1">Previous</a>
-  <a class="pagination-next" (click)="page= page + 1">Next page</a>
-
-  <ul class="pagination-list">
-    <li><a class="pagination-link" aria-label="Goto page 1" (click)="page=0">1</a></li>
-    <li *ngIf="totalPages> 1"><span class="pagination-ellipsis">&hellip;</span></li>
-    <li *ngIf="totalPages> 4"><a class="pagination-link">{{getMidPages() - 1}}</a></li>
-    <li *ngIf="totalPages> 2"><a class="pagination-link is-current">{{getMidPages()}}</a></li>
-    <li *ngIf="totalPages> 3"><a class="pagination-link">{{getMidPages() + 1}}</a></li>
-    <li *ngIf="totalPages> 2"><span class="pagination-ellipsis">&hellip;</span></li>
-    <li *ngIf="totalPages> 1"><a class="pagination-link"
-        (click)="page=totalPages - 1">{{totalPages}}</a></li>
-  </ul>
-</nav>
