@@ -1,6 +1,58 @@
 
 
+
 <div class="container is-fluid" *ngIf="eventsList.length>0">
+
+  <div class="columns">
+    <div class="column">
+      <div class="tabs is-toggle">
+        <ul>
+          <li [ngClass]="sortActive== 'date' ? 'is-active':''">
+            <a (click)="sortActive= 'date'">
+              <span class="icon is-small"><i class="fas fa-calendar-week"
+                  aria-hidden="true"></i></span>
+              <span>Date</span>
+            </a>
+          </li>
+          <li [ngClass]="sortActive== 'price' ? 'is-active':''">
+            <a (click)="sortActive= 'price'">
+              <span class="icon is-small"><i class="fas fa-dollar-sign"
+                  aria-hidden="true"></i></span>
+              <span>Price</span>
+            </a>
+          </li>
+          <li [ngClass]="sortActive== 'title' ? 'is-active':''">
+            <a (click)="sortActive= 'title'">
+              <span class="icon is-small"><i class="fas fa-heading"
+                  aria-hidden="true"></i></span>
+              <span>Title</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="column right">
+      <div class="tabs is-toggle">
+        <ul>
+          <li [ngClass]="descAscActive== 'asc' ? 'is-active':''">
+            <a (click)="descAscActive= 'asc'">
+              <span class="icon is-small"><i class="fas fa-sort-amount-up-alt"
+                  aria-hidden="true"></i></span>
+              <span>Asc</span>
+            </a>
+          </li>
+          <li [ngClass]="descAscActive== 'desc' ? 'is-active':''">
+            <a (click)="descAscActive= 'desc'">
+              <span class="icon is-small"><i class="fas fa-sort-amount-down-alt"
+                  aria-hidden="true"></i></span>
+              <span>Desc</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="search-results"
     data-infinite-scroll
     debounce

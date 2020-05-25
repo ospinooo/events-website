@@ -26,6 +26,10 @@ export class EventsListComponent implements OnInit {
   sortKey: String;
   dir: Direction;
 
+  dropdownActive: boolean = false;
+  descAscActive: string = 'asc';
+  sortActive: string = 'date';
+
   totalPages: number;
   currentNumberPages: number;
 

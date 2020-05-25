@@ -28,3 +28,12 @@
 .dont-display {
   display: none;
 }
+
+
+.right {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
