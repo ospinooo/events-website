@@ -26,8 +26,9 @@ export class EventsService {
 
 
   /** GET events from the server */
-  getEvents(): Observable<PageableEvent> {
-    return this.http.get<PageableEvent>(this.eventsUrl);
+  getEvents(page?: number): Observable<PageableEvent> {
+    let url = page ? `${this.eventsUrl}?page=${page}` : this.eventsUrl;
+    return this.http.get<PageableEvent>(url);
   }
 
   /** GET event by id. Will 404 if id not found */
