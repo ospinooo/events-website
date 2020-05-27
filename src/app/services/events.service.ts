@@ -26,8 +26,9 @@ export class EventsService {
 
 
   /** GET events from the server */
-  getEvents(page?: number): Observable<PageableEvent> {
-    let url = page ? `${this.eventsUrl}?page=${page}` : this.eventsUrl;
+  getEvents(page?: number, descAscActive?: string, sortActive?: string): Observable<PageableEvent> {
+    let url = `${this.eventsUrl}?page=${page}&dir=${descAscActive}&sort=${sortActive}`
+    console.log(url)
     return this.http.get<PageableEvent>(url);
   }
 

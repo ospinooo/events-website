@@ -27,8 +27,9 @@ export class EventsListComponent implements OnInit {
   dir: Direction;
 
   dropdownActive: boolean = false;
+
   descAscActive: string = 'asc';
-  sortActive: string = 'date';
+  sortActive: string = 'title';
 
   totalPages: number;
   currentNumberPages: number;
@@ -54,7 +55,8 @@ export class EventsListComponent implements OnInit {
   }
 
   getEvents(): void {
-    this.eventsService.getEvents()
+    this.eventsList.pop()
+    this.eventsService.getEvents(0, this.descAscActive, this.sortActive)
       .subscribe(eventsList => {
         this.eventsList = eventsList.content;
         this.totalPages = eventsList.totalPages;
@@ -76,7 +78,7 @@ export class EventsListComponent implements OnInit {
     document.getElementById("loading-contianer").style.display = 'flex';
 
     // add another 10 items
-    this.eventsService.getEvents(this.currentNumberPages)
+    this.eventsService.getEvents(this.currentNumberPages, this.descAscActive, this.sortActive)
       .subscribe(data => {
         this.eventsList = this.eventsList.concat(data.content);
         if (data.content.length > 0) {
