@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Event } from "../../models/event.model";
 import Bulma from '@vizuaalog/bulmajs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TicketsService, FeeTickets, Assistant } from 'src/app/services/tickets.service';
 
 @Component({
   selector: 'app-payment-modal',
@@ -17,6 +18,7 @@ export class PaymentModalComponent implements OnInit {
   step_id: number;
   total: number;
   total_people: number
+  fee_assistants: Array<FeeTickets> = [];
   fee_tickets: Array<number>;
   assistants: Array<Object>;
   isDocumentationfilled: boolean = false;
@@ -24,7 +26,12 @@ export class PaymentModalComponent implements OnInit {
 
   userInfoForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  usernameTickets: HTMLCollectionOf<Element>;
+  userIdTickets: HTMLCollectionOf<Element>;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private ticketsService: TicketsService) {
     this.total_people = 0;
   }
 
@@ -40,17 +47,34 @@ export class PaymentModalComponent implements OnInit {
   }
 
   updateAssistants() {
-    var usernameTickets = document.getElementsByClassName("username-ticket");
-    var userIdTickets = document.getElementsByClassName("userid-ticket");
+    this.fee_assistants = [];
+    this.event.fees.forEach(fee => this.fee_assistants.push(new FeeTickets(fee.id)));
+    this.usernameTickets = document.getElementsByClassName("username-ticket");
+    this.userIdTickets = document.getElementsByClassName("userid-ticket");
 
+    let count = 0;
+    let iFee = 0;
     let i = 0;
     let blank = false;
+
     while (i < this.total_people && !blank) {
-      var username: any = usernameTickets[i];
-      var id: any = userIdTickets[i];
+      var username: any = this.usernameTickets[i];
+      var id: any = this.userIdTickets[i];
+
+
+      // until we find next fee with tickets
+      while (count == this.fee_tickets[iFee]) {
+        iFee += 1;
+        count = 0;
+      }
+
+      this.fee_assistants[iFee].assistants.push(new Assistant(username.value, id.value));
+
+      count += 1;
       blank = username.value == '' || id.value == '';
       i = i + 1;
     }
+    console.log(this.fee_assistants);
 
     this.isDocumentationfilled = !blank;
   }
@@ -92,11 +116,17 @@ export class PaymentModalComponent implements OnInit {
   }
 
   pay() {
-    Bulma.create('notification', {
-      body: `You purchased tickets for ${this.event.title}! 🎉`,
-      color: 'success',
-      isDismissable: true,
-      parent: document.getElementById('notification'),
-    }).show();
+    this.ticketsService.buyTickets(this.event.id, this.fee_assistants)
+      .subscribe(data => {
+        console.log(data);
+        Bulma.create('notification', {
+          body: `You purchased tickets for ${this.event.title}! 🎉`,
+          color: 'success',
+          isDismissable: true,
+          parent: document.getElementById('notification'),
+        }).show();
+      }, error => {
+        console.log(error);
+      })
   }
 }
