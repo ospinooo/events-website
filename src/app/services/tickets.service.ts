@@ -4,6 +4,7 @@ import { httpOptions } from './http/http.options';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Ticket } from '../models/ticket.model';
+import { PageableTicket } from './res/ticket.interface';
 
 
 export class FeeTickets {
@@ -36,9 +37,9 @@ export class TicketsService {
 
   constructor(private http: HttpClient) { }
 
-  getTickets(page?: number, descAscActive?: string, sortActive?: string): Observable<Ticket[]> {
-    let url = `${this.ticketsUrl}`
-    return this.http.get<Ticket[]>(url);
+  getTickets(page?: number, descAscActive?: string, sortActive?: string): Observable<PageableTicket> {
+    let url = `${this.ticketsUrl}`;
+    return this.http.get<PageableTicket>(url);
   }
 
   buyTickets(id: number, feeList: FeeTickets[]): Observable<FeeTickets[]> {

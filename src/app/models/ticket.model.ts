@@ -5,4 +5,6 @@ export interface Ticket {
   fee: Fee;
   confirmed: boolean;
   userId: number;
+  assistantName: string;
+  assistantId: string;
 }
