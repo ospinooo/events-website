@@ -18,7 +18,10 @@ export class CalendarComponent implements OnInit {
     // Initialize all input of date type.
     const calendars = bulmaCalendar.attach('[type="date"]', {
       displayMode: 'inline',
-      dateFormat: 'YYYY-MM-DD'
+      dateFormat: 'YYYY-MM-DD',
+      startDate: getTodayString(),
+      weekStart: 1,
+      lang: "en"
     });
 
     // Loop on each calendar initialized
