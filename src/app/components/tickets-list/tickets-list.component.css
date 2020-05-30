@@ -1,0 +1,20 @@
+.display {
+  display: flex;
+}
+
+.dont-display {
+  display: none;
+}
+
+
+.center {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.table-row:hover {
+  background-color: aliceblue;
+}

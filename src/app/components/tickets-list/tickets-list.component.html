@@ -10,19 +10,8 @@
       <th>Date</th>
     </tr>
   </thead>
-  <tfoot>
-    <tr>
-      <th></th>
-      <th><abbr title="Event">Event</abbr></th>
-      <th>Fee</th>
-      <th><abbr title="Price">Price</abbr></th>
-      <th><abbr title="Assistant Name">Name</abbr></th>
-      <th><abbr title="Assistnat Id">Id</abbr></th>
-      <th>Date</th>
-    </tr>
-  </tfoot>
   <tbody>
-    <tr *ngFor="let ticket of tickets; let i= index;">
+    <tr *ngFor="let ticket of tickets; let i= index;" class="table-row">
       <th>{{i}}</th>
       <td>title</td>
       <td>{{ticket.fee.title}}</td>
@@ -46,3 +35,8 @@
     </tr>
   </tbody>
 </table>
+
+<div class="center" [ngClass]="tickets.length == 0 ? 'display'
+  :'dont-display'">
+  <div *ngIf="tickets.length == 0">No tickets 😩</div>
+</div>

@@ -9,7 +9,7 @@ import { Ticket } from 'src/app/models/ticket.model';
 })
 export class TicketsListComponent implements OnInit {
 
-  tickets: Ticket[];
+  tickets: Ticket[] = [];
 
   constructor(private ticketsService: TicketsService) { }
 
