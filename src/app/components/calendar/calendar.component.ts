@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.min.js';
 import { EventsService } from 'src/app/services/events.service';
 import { Event } from '../../models/event.model';
+import { getTodayString } from 'src/app/helpers/date';
 
 @Component({
   selector: 'app-calendar',
