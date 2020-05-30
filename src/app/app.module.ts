@@ -21,6 +21,7 @@ import { CreateEventComponent } from './components/events/create-event/create-ev
 import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 import { TicketsListComponent } from './components/tickets-list/tickets-list.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     LoginComponent,
     CreateEventComponent,
     EditEventComponent,
-    TicketsListComponent
+    TicketsListComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { CreateEventComponent } from './components/events/create-event/create-event.component';
 import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 import { TicketsListComponent } from './components/tickets-list/tickets-list.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'events/created', component: EventsListComponent },
   { path: "events/:id", component: EventDetailsComponent },
   { path: "about", component: AboutComponent },
+  { path: 'calendar', component: CalendarComponent },
   { path: "profile", component: ProfileComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'tickets', component: TicketsListComponent },

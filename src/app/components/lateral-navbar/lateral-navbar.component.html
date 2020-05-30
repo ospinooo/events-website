@@ -19,7 +19,8 @@
     <li routerLink="/"><a [ngClass]="active === 'past_events' ? 'is-active': ''"
         (click)="newActive('past_events')"> 🎶 Past events</a></li>
 
-    <li routerLink="/"><a [ngClass]="active === 'calendar' ? 'is-active': ''"
+    <li routerLink="/calendar"><a [ngClass]="active === 'calendar' ?
+        'is-active': ''"
         (click)="newActive('calendar')"> 🗓 Calendar</a></li>
   </ul>
   <p class="menu-label">
