@@ -43,27 +43,30 @@
         </span>
       </div>
 
-      <div *ngIf="this.total_people> 0" class="columns">
-        <div class="column"><label class="label">Name</label></div>
-        <div class="column"><label class="label">Id</label></div>
-      </div>
       <form>
-        <div *ngFor="let people of arrayOne(this.total_people); let i= index;">
-          <!-- <label class="label">Person {{i}}</label> -->
-          <div class="columns">
-            <div class="column">
-              <input
-                class="input username-ticket" type="text"
-                (change)="updateAssistants()"
-                placeholder="e.g Pablo Ospino" required>
-            </div>
-            <div class="column">
-              <input
-                class="input userid-ticket"
-                type="tel"
-                (change)="updateAssistants()"
-                placeholder="e.g.
-                71234567P" required>
+        <div *ngFor="let fee of event.fees; let i= index">
+          <div *ngIf="fee_tickets[i]> 0" class="columns">
+            <div class="column">Fee: {{fee.title}}</div>
+            <div class="column"><label class="label">Name</label></div>
+            <div class="column"><label class="label">Id</label></div>
+          </div>
+
+          <div *ngFor="let people of arrayOne(fee_tickets[i]); let j= index;">
+            <div class="columns">
+              <div class="column">
+                <input
+                  class="input username-ticket" type="text"
+                  (change)="updateAssistants()"
+                  placeholder="e.g Pablo Ospino" required>
+              </div>
+              <div class="column">
+                <input
+                  class="input userid-ticket"
+                  type="tel"
+                  (change)="updateAssistants()"
+                  placeholder="e.g.
+                  71234567P" required>
+              </div>
             </div>
           </div>
         </div>
