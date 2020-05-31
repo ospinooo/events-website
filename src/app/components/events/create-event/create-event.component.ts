@@ -19,7 +19,8 @@ export class CreateEventComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private eventsService: EventsService, private router: Router) {
+    private eventsService: EventsService,
+    private router: Router) {
     this.createForm();
   }
 
@@ -52,9 +53,11 @@ export class CreateEventComponent implements OnInit {
             isDismissable: true,
             parent: document.getElementById('notification'),
           }).show();
+
           this.reset();
           this.fees = []
 
+          this.router.navigate([`events/${data.id}`]);
           console.log(data);
         },
         error => {

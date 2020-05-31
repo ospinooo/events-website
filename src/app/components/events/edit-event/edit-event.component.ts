@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { FeeCreate } from 'src/app/services/req/event.create';
 import { EventsService } from 'src/app/services/events.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Bulma from '@vizuaalog/bulmajs';
 import { Event } from '../../../models/event.model';
 import { Fee } from 'src/app/models/fee.model';
@@ -29,7 +29,8 @@ export class EditEventComponent implements OnInit {
     private formBuilder: FormBuilder,
     private eventsService: EventsService,
     private route: ActivatedRoute,
-    private feeService: FeesService) {
+    private feeService: FeesService,
+    private router: Router) {
     this.createForm();
   }
 
@@ -79,10 +80,12 @@ export class EditEventComponent implements OnInit {
         data => {
           Bulma.create('notification', {
             body: 'Event updated correctly! 🎉',
-            color: 'success',
+            color: 'info',
             isDismissable: true,
             parent: document.getElementById('notification'),
           }).show();
+
+          this.router.navigate([`events/${this.id}`]);
         }
       )
   }
