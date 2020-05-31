@@ -10,3 +10,12 @@
 .footer-brand {
   font-family: 'Leckerli One';
 }
+
+
+#notification {
+  position: fixed;
+  display: block;
+  z-index: 1;
+  top: 70px;
+  right: 10px;
+}
