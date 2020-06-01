@@ -54,8 +54,11 @@
   </div>
 
   <div class="search-results"
-    data-infinite-scroll
+    infiniteScroll
     debounce
+    [infiniteScrollUpDistance]="3"
+    [alwaysCallback]="true"
+    [fromRoot]="true"
     (scrolled)="onScrollDown($event)"
     (scrolledUp)="onUp($event)">
 
@@ -88,12 +91,12 @@
     </div>
     <br>
     <br>
-    <div class="loading-contianer" id="loading-contianer"
+    <!-- <div class="loading-contianer" id="loading-contianer"
       *ngIf="eventsList.length>0">
       <div class="loading">
         <progress class="progress is-small is-primary" max="100">15%</progress>
       </div>
-    </div>
+    </div> -->
     <br>
     <span *ngIf="eventsList.length>0" class="center">No more events </span>
   </div>

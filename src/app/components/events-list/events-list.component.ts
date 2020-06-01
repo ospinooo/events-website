@@ -75,7 +75,7 @@ export class EventsListComponent implements OnInit {
     console.log('scrolled down!!', ev);
 
     // Activate loading.
-    document.getElementById("loading-contianer").style.display = 'flex';
+    // document.getElementById("loading-contianer").style.display = 'flex';
 
     // add another 10 items
     this.eventsService.getEvents(this.currentNumberPages, this.descAscActive, this.sortActive)
@@ -85,7 +85,7 @@ export class EventsListComponent implements OnInit {
           this.currentNumberPages += 1;
         }
         // delete loading.
-        document.getElementById("loading-contianer").style.display = 'none';
+        // document.getElementById("loading-contianer").style.display = 'none';
       })
   }
 
