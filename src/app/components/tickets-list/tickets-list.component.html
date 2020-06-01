@@ -1,4 +1,4 @@
-<table class="table">
+<table id="tickets-table" class="table">
   <thead>
     <tr>
       <th></th>
@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let ticket of tickets; let i= index;" class="table-row">
-      <th>{{i}}</th>
+      <th>{{i+1}}</th>
       <td>title</td>
       <td>{{ticket.fee.title}}</td>
       <td>{{ticket.fee.price}}</td>
@@ -20,7 +20,7 @@
       <td>{{ticket.assistantId}}</td>
       <td>date</td>
     </tr>
-    <tr class="is-selected">
+    <!-- <tr class="is-selected">
       <th></th>
       <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
           title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
@@ -32,7 +32,7 @@
       <td>Qualification for the <a
           href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
           title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-    </tr>
+    </tr> -->
   </tbody>
 </table>
 
