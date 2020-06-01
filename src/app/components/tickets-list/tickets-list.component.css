@@ -18,3 +18,7 @@
 .table-row:hover {
   background-color: aliceblue;
 }
+
+#tickets-table {
+  width: 100%;
+}
