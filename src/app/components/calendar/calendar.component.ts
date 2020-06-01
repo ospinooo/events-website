@@ -13,9 +13,18 @@ export class CalendarComponent implements OnInit {
 
   events: Event[] = [];
 
-  constructor(private eventsService: EventsService) { }
+  constructor(private eventsService: EventsService) {
+
+  }
 
   ngOnInit(): void {
+    // Get the data from today.
+    this.eventsService.getEventsByDate(getTodayString())
+      .subscribe(data => {
+        this.events = data.content;
+      })
+
+
     // Initialize all input of date type.
     const calendars = bulmaCalendar.attach('[type="date"]', {
       displayMode: 'inline',
