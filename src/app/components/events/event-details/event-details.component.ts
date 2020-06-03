@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from 'src/app/services/events.service';
-import { Event } from '../../../models/event.model';
+import { Event, getCheapestPrice } from '../../../models/event.model';
 
 @Component({
   selector: 'app-event-details',
@@ -32,6 +32,9 @@ export class EventDetailsComponent implements OnInit {
       .subscribe((event) => this.event_model = event)
   }
 
+  getEventCheapestPrice() {
+    return getCheapestPrice(this.event_model);
+  }
 
   ngOnDestroy() {
     // this.sub.unsubscribe();

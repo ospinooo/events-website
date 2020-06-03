@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Event } from '../../../models/event.model';
+import { Event, getCheapestPrice } from '../../../models/event.model';
 
 @Component({
   selector: 'app-event-card',
@@ -8,11 +8,14 @@ import { Event } from '../../../models/event.model';
 })
 export class EventCardComponent implements OnInit {
 
-  @Input() event_model: Event;
+  @Input() event_model: Event = undefined;
 
   constructor() { }
 
   ngOnInit(): void { }
 
+  getEventCheapestPrice() {
+    return getCheapestPrice(this.event_model);
+  }
 
 }

@@ -1,0 +1,6 @@
+.complete {
+  width: 100%;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}

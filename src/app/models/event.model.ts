@@ -8,6 +8,9 @@ export class Event {
   description: string;
   fees: Fee[];
   userId: number;
+  date: string;
+  lowestPrice: number;
+  username: string;
 
   constructor(title: string, subtitle: string, description: string, id?: number, userId?: number, fees?: Fee[]) {
     this.id = id;
@@ -21,4 +24,26 @@ export class Event {
   setFees(fees: Fee[]) {
     this.fees = fees;
   }
+
+  getCheapestPrice(): number {
+    let min = Number.MAX_SAFE_INTEGER;
+    this.fees.forEach(fee => {
+      if (fee.price < min) {
+        min = fee.price;
+      }
+    })
+    return min;
+  }
+
+}
+
+
+export function getCheapestPrice(event: Event): number {
+  let min = Number.MAX_SAFE_INTEGER;
+  event.fees.forEach(fee => {
+    if (fee.price < min) {
+      min = fee.price;
+    }
+  })
+  return min;
 }
