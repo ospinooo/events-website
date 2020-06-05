@@ -9,19 +9,23 @@
         (click)="newActive('following_events')"> 🚀 Following events
       </a>
     </li>
+    <li routerLink="/"><a [ngClass]="active === 'past_events' ? 'is-active': ''"
+        (click)="newActive('past_events')"> 🎶 Past events</a></li>
+    <li routerLink="/calendar"><a [ngClass]="active === 'calendar' ?
+        'is-active': ''"
+        (click)="newActive('calendar')"> 🗓 Calendar</a></li>
+  </ul>
+  <p class="menu-label" *ngIf="tokenStorageService.isLogged()">
+    User
+  </p>
+  <ul class="menu-list" *ngIf="tokenStorageService.isLogged()">
     <li routerLink="/tickets">
       <a [ngClass]="active === 'tickets' ? 'is-active': ''"
         (click)="newActive('tickets')"> 🎟 Tickets</a>
     </li>
-    <li routerLink="/">
+    <li routerLink="/" *ngIf="tokenStorageService.isLogged()">
       <a [ngClass]="active === 'my_events' ? 'is-active': ''"
         (click)="newActive('my_events')"> 🎹 My events</a></li>
-    <li routerLink="/"><a [ngClass]="active === 'past_events' ? 'is-active': ''"
-        (click)="newActive('past_events')"> 🎶 Past events</a></li>
-
-    <li routerLink="/calendar"><a [ngClass]="active === 'calendar' ?
-        'is-active': ''"
-        (click)="newActive('calendar')"> 🗓 Calendar</a></li>
   </ul>
   <p class="menu-label">
     Administration
