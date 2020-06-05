@@ -37,8 +37,9 @@ export class TicketsService {
 
   constructor(private http: HttpClient) { }
 
-  getTickets(page?: number, descAscActive?: string, sortActive?: string): Observable<PageableTicket> {
-    let url = `${this.ticketsUrl}`;
+  getTickets(page: number = 0): Observable<PageableTicket> {
+    let url = `${this.ticketsUrl}?page=${page}`;
+    console.log(url);
     return this.http.get<PageableTicket>(url);
   }
 

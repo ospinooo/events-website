@@ -1,26 +1,36 @@
-<table id="tickets-table" class="table">
-  <thead>
-    <tr>
-      <th></th>
-      <th><abbr title="Event">Event</abbr></th>
-      <th>Fee</th>
-      <th><abbr title="Price">Price</abbr></th>
-      <th><abbr title="Assistant Name">Name</abbr></th>
-      <th><abbr title="Assistnat Id">Id</abbr></th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let ticket of tickets; let i= index;" class="table-row">
-      <th>{{i+1}}</th>
-      <td>title</td>
-      <td>{{ticket.fee.title}}</td>
-      <td>{{ticket.fee.price}}</td>
-      <td>{{ticket.assistantName}}</td>
-      <td>{{ticket.assistantId}}</td>
-      <td>date</td>
-    </tr>
-    <!-- <tr class="is-selected">
+
+<div class="search-results" *ngIf="tickets.length>0"
+  infiniteScroll
+  debounce
+  [infiniteScrollUpDistance]="3.5"
+  [alwaysCallback]="true"
+  [fromRoot]="true"
+  (scrolled)="onScrollDown($event)"
+  (scrolledUp)="onUp($event)">
+
+  <table id="tickets-table" class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th><abbr title="Event">Event</abbr></th>
+        <th>Fee</th>
+        <th><abbr title="Price">Price</abbr></th>
+        <th><abbr title="Assistant Name">Name</abbr></th>
+        <th><abbr title="Assistnat Id">Id</abbr></th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets; let i= index;" class="table-row">
+        <th>{{i+1}}</th>
+        <td>title</td>
+        <td>{{ticket.fee.title}}</td>
+        <td>{{ticket.fee.price}}</td>
+        <td>{{ticket.assistantName}}</td>
+        <td>{{ticket.assistantId}}</td>
+        <td>date</td>
+      </tr>
+      <!-- <tr class="is-selected">
       <th></th>
       <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
           title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
@@ -33,8 +43,10 @@
           href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
           title="2016–17 UEFA Champions League">Champions League group stage</a></td>
     </tr> -->
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
+
 
 <div class="center" [ngClass]="tickets.length == 0 ? 'display'
   :'dont-display'">
