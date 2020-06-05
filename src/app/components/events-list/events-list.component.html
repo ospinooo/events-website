@@ -1,7 +1,7 @@
 
 
 
-<div class="container is-fluid" *ngIf="eventsList.length>0">
+<div class="container is-fluid">
 
   <div class="columns is-mobile">
     <div class="column">
@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <div class="search-results"
+  <div class="search-results" *ngIf="eventsList.length>0"
     infiniteScroll
     debounce
     [infiniteScrollUpDistance]="3"

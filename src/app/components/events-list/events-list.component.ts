@@ -55,7 +55,8 @@ export class EventsListComponent implements OnInit {
   }
 
   getEvents(): void {
-    this.eventsList.pop()
+    this.eventsList = [];
+    this.currentNumberPages = 1;
     this.eventsService.getEvents(0, this.descAscActive, this.sortActive)
       .subscribe(eventsList => {
         this.eventsList = eventsList.content;
