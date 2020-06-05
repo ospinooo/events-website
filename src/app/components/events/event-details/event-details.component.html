@@ -10,41 +10,35 @@
   </div>
 </div>
 <div class="card">
-  <div class="content">
-    <div class="media">
-
-      <div class="media-content margin-left">
-        <div class="columns">
-          <div class="column">
-            <p class="title is-4">{{event_model.id}} - {{event_model.title}}</p>
-            <p class="subtitle is-6">{{"SUBTITLE"}}</p>
-          </div>
-          <div class="column is-right card-datetime"><strong>Time</strong>:
-            <time
-              datetime="2016-1-1">11:09
-              PM - 1 Jan 2016</time></div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="card-content">
     <div class="content">
+      <p class="title is-4">{{event_model.id}} - {{event_model.title}}</p>
+      <p class="subtitle is-6">{{"SUBTITLE"}}</p>
+      <strong>Time: </strong><time
+        datetime="2016-1-1">11:09
+        PM - 1 Jan 2016</time>
+      <hr>
       {{event_model.description}}
       <hr>
-      <div *ngFor="let fee of event_model.fees; let j= index" id="fee-info"
-        class="control">
-        <label class="label">{{fee.title}}</label>
-        <span class="help">Price: {{fee.price}}</span>
-        <span class="help">{{fee.description}}</span>
+      <div class="label">Fees:</div>
+      <div *ngFor="let fee of event_model.fees; let j= index">
+        <div class="control card">
+          <div id="fee-info">
+            <label class="label">{{fee.title}}</label>
+            <span class="help">Price: {{fee.price}}</span>
+            <span class="help">{{fee.description}}</span>
+          </div>
+        </div>
         <br>
       </div>
       <hr>
-      <a>@{{event_model.username}}</a>.
+      <a>@{{event_model.username}}</a>
       <br>
       <div class="card-created-at">
         <time datetime="2016-1-1">Created - 1 Jan 2016
           <br> At 11:09 PM </time>
       </div>
+      <br>
     </div>
 
     <div class="card-footer">
