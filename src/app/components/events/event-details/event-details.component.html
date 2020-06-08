@@ -20,16 +20,23 @@
       <hr>
       {{event_model.description}}
       <hr>
-      <div class="label">Fees:</div>
-      <div *ngFor="let fee of event_model.fees; let j= index">
-        <div class="control card">
-          <div id="fee-info">
-            <label class="label">{{fee.title}}</label>
-            <span class="help">Price: {{fee.price}}</span>
-            <span class="help">{{fee.description}}</span>
+      <div class="columns">
+        <div class="column">
+          <div class="label">Fees:</div>
+          <div *ngFor="let fee of event_model.fees; let j= index">
+            <div class="control card">
+              <div id="fee-info">
+                <label class="label">{{fee.title}}</label>
+                <span class="help">Price: {{fee.price}}</span>
+                <span class="help">{{fee.description}}</span>
+              </div>
+            </div>
+            <br>
           </div>
         </div>
-        <br>
+        <div class="column">
+          <div class="match-parent brand">MusicMeets</div>
+        </div>
       </div>
       <hr>
       <a>@{{event_model.username}}</a>

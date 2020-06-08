@@ -12,7 +12,6 @@ export class EventDetailsComponent implements OnInit {
 
   @Input() event_model: Event;
 
-
   id: number;
   sub;
 

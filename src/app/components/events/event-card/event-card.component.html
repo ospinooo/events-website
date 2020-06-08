@@ -27,8 +27,9 @@
       <br>
       <div class="complete">
         <button class="button is-success"
-          routerLink='/events/{{event_model.id}}'>From
-          {{getEventCheapestPrice()}}</button>
+          routerLink='/events/{{event_model.id}}'>
+          {{getEventCheapestPrice()}} € -
+          {{getEventHighestPrice()}} €</button>
       </div>
     </div>
   </div>

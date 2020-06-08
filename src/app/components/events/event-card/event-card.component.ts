@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Event, getCheapestPrice } from '../../../models/event.model';
+import { Event, getCheapestPrice, getHighestPrice } from '../../../models/event.model';
 
 @Component({
   selector: 'app-event-card',
@@ -16,6 +16,10 @@ export class EventCardComponent implements OnInit {
 
   getEventCheapestPrice() {
     return getCheapestPrice(this.event_model);
+  }
+
+  getEventHighestPrice() {
+    return getHighestPrice(this.event_model);
   }
 
 }
