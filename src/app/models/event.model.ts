@@ -47,3 +47,13 @@ export function getCheapestPrice(event: Event): number {
   })
   return min;
 }
+
+export function getHighestPrice(event: Event): number {
+  let max = 0;
+  event.fees.forEach(fee => {
+    if (fee.price > max) {
+      max = fee.price;
+    }
+  })
+  return max;
+}
