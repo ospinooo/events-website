@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   isLogged: boolean = false;
   roles: Role[];
 
+  error_signin: string = "";
   @Output() isSignInEmitter: EventEmitter<boolean> = new EventEmitter();
 
   loginForm: FormGroup;
@@ -73,6 +74,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.log(error);
+          this.error_signin = "Credentials don't match";
         }
       )
   }
