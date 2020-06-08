@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { PageableEvent } from './res/events.interface';
 import { EventCreate } from './req/event.create';
+import { TokenStorageService } from '../auth/token-storage.service';
 
 
 const httpOptions = {
@@ -20,7 +21,7 @@ const httpOptions = {
 })
 export class EventsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   private eventsUrl = 'http://localhost:8080/events';
 
@@ -99,7 +100,9 @@ export class EventsService {
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
-
+      if (error.status == 401) {
+        this.tokenStorageService.signOut();
+      }
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };

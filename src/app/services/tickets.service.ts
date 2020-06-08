@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Ticket } from '../models/ticket.model';
 import { PageableTicket } from './res/ticket.interface';
+import { TokenStorageService } from '../auth/token-storage.service';
 
 
 export class FeeTickets {
@@ -35,7 +36,7 @@ export class TicketsService {
 
   private ticketsUrl = 'http://localhost:8080/tickets';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   getTickets(page: number = 0): Observable<PageableTicket> {
     let url = `${this.ticketsUrl}?page=${page}`;
@@ -66,10 +67,15 @@ export class TicketsService {
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
+      if (error.status == 401) {
+        this.tokenStorageService.signOut();
+      }
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
+
+
 
   /** Log a EventService message with the MessageService */
   private log(message: string) {

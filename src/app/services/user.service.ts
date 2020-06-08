@@ -68,7 +68,9 @@ export class UserService {
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
-
+      if (error.status == 401) {
+        this.tokenStorageService.signOut();
+      }
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };

@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { httpOptions } from './http/http.options';
 import { HttpClient } from '@angular/common/http';
+import { TokenStorageService } from '../auth/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class FeesService {
 
   private feesUrl = 'http://localhost:8080/fees';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   /** DELETE: delete the fee from the server */
   deleteFee(fee: Fee | number): Observable<Fee> {
@@ -38,7 +39,9 @@ export class FeesService {
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
-
+      if (error.status == 401) {
+        this.tokenStorageService.signOut();
+      }
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
