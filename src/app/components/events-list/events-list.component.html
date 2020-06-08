@@ -7,13 +7,6 @@
     <div class="column">
       <div class="tabs is-toggle">
         <ul>
-          <li [ngClass]="sortActive== 'date' ? 'is-active':''">
-            <a (click)="sortActive= 'date';getEvents()">
-              <span class="icon is-small"><i class="fas fa-calendar-week"
-                  aria-hidden="true"></i></span>
-              <span>Date</span>
-            </a>
-          </li>
           <li [ngClass]="sortActive== 'fees.price' ? 'is-active':''">
             <a (click)="sortActive= 'fees.price';getEvents()">
               <span class="icon is-small"><i class="fas fa-dollar-sign"
@@ -91,12 +84,6 @@
     </div>
     <br>
     <br>
-    <!-- <div class="loading-contianer" id="loading-contianer"
-      *ngIf="eventsList.length>0">
-      <div class="loading">
-        <progress class="progress is-small is-primary" max="100">15%</progress>
-      </div>
-    </div> -->
     <br>
     <span *ngIf="eventsList.length>0" class="center">No more events </span>
   </div>

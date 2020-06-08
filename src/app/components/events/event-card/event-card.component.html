@@ -25,8 +25,9 @@
       <br>
       <time>{{event_model.date || "No date"}}</time>
       <br>
+      <br>
       <div class="complete">
-        <button class="button is-success"
+        <button class="button is-success is-small"
           routerLink='/events/{{event_model.id}}'>
           {{getEventCheapestPrice()}} € -
           {{getEventHighestPrice()}} €</button>

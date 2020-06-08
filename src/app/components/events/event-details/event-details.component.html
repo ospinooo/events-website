@@ -4,8 +4,9 @@
       (click)="openBuyTicketsModal()">Buy from: {{getEventCheapestPrice()}}</button>
   </div>
   <div class="column">
-    <div id="edit-button" routerLink="/event/edit/{{id}}">
-      <a class="button is-info is-small is-right">Edit</a>
+    <div id="edit-button">
+      <a routerLink="/event/edit/{{id}}" class="button is-info is-small
+        is-right">Edit</a>
     </div>
   </div>
 </div>
