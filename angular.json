@@ -26,7 +26,8 @@
             "styles": [
               "node_modules/bulma/css/bulma.min.css",
               "src/styles.css",
-              "node_modules/bulma-calendar/dist/css/bulma-calendar.min.css"
+              "node_modules/bulma-calendar/dist/css/bulma-calendar.min.css",
+              "node_modules/bulma-switch/dist/css/bulma-switch.min.css"
             ],
             "scripts": [
               "node_modules/bulma-calendar/dist/js/bulma-calendar.js"
