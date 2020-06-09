@@ -93,7 +93,11 @@ export class PaymentModalComponent implements OnInit {
   }
 
   getTotalPrice(): number {
-    return 0;
+    let total = 0;
+    this.fee_tickets.forEach((n, i) => {
+      total += n * this.event.fees[i].price;
+    })
+    return total;
   }
 
   getTotalPeople(): number {
