@@ -17,12 +17,14 @@ export class EventCreate {
   subtitle: string;
   description: string;
   fees: FeeCreate[];
+  date: string;
 
-  constructor(title: string, subtitle: string, description: string, fees: FeeCreate[]) {
+  constructor(title: string, subtitle: string, description: string, fees: FeeCreate[], date: string) {
     this.title = title;
     this.subtitle = subtitle;
     this.description = description;
     this.fees = fees;
+    this.date = date;
   }
 }
 

@@ -58,8 +58,16 @@
     <div class="field">
       <label class="label" for="description">Description</label>
       <div class="control">
-        <textarea class="textarea" placeholder="Textarea"
+        <textarea class="textarea"
           formControlName="description" placeholder="Description" #description></textarea>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="date">Date</label>
+      <div class="control">
+        <input id="calendar_create" type="date" formControlName="date" #date>
+        <span class="help is-danger">{{error_date}}</span>
       </div>
     </div>
 
@@ -130,7 +138,7 @@
   </section>
   <button type="submit"
     [disabled]="createEventForm.pristine || createEventForm.invalid ||
-    getFees().length== 0"
+    getFees().length== 0 || error_date.length> 0 || date.length == 0"
     class="button center
     is-success">
     Submit
