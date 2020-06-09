@@ -5,43 +5,29 @@
   </p>
   <ul class="menu-list">
     <li routerLink="/">
-      <a [ngClass]="active === 'following_events' ? 'is-active': ''"
-        (click)="newActive('following_events')"> 🚀 Following events
+      <a [ngClass]="active === 'events' ? 'is-active': ''"
+        (click)="newActive('events')"> 🚀 Events
       </a>
     </li>
-    <li routerLink="/"><a [ngClass]="active === 'past_events' ? 'is-active': ''"
-        (click)="newActive('past_events')"> 🎶 Past events</a></li>
     <li routerLink="/calendar"><a [ngClass]="active === 'calendar' ?
         'is-active': ''"
         (click)="newActive('calendar')"> 🗓 Calendar</a></li>
   </ul>
-  <p class="menu-label" *ngIf="tokenStorageService.isLogged()">
-    User
-  </p>
   <ul class="menu-list" *ngIf="tokenStorageService.isLogged()">
     <li routerLink="/tickets">
       <a [ngClass]="active === 'tickets' ? 'is-active': ''"
         (click)="newActive('tickets')"> 🎟 Tickets</a>
     </li>
-    <li routerLink="/" *ngIf="tokenStorageService.isLogged()">
-      <a [ngClass]="active === 'my_events' ? 'is-active': ''"
-        (click)="newActive('my_events')"> 🎹 My events</a></li>
   </ul>
   <p class="menu-label">
     Administration
   </p>
   <ul class="menu-list" *ngIf="tokenStorageService.isAdmin()">
-    <a routerLink="/admin" [ngClass]="active === 'admin' ? 'is-active': ''"
-      (click)="newActive('admin')">👨🏽‍💻 Admin</a>
     <li>
       <ul>
         <li routerLink="/event/create">
           <a [ngClass]="active === 'new_event' ? 'is-active': ''"
-            (click)="newActive('new_event')">🎯 New Event</a>
-        </li>
-        <li routerLink="events/created">
-          <a [ngClass]="active === 'my_events_created' ? 'is-active': ''"
-            (click)="newActive('my_events_created')">🥁 My Events Created</a>
+            (click)="newActive('new_event')"> 🎯 New Event</a>
         </li>
       </ul>
     </li>
@@ -49,10 +35,6 @@
 
 
   <ul class="menu-list">
-    <li routerLink="/">
-      <a [ngClass]="active === 'payments' ? 'is-active': ''"
-        (click)="newActive('payments')"> 💰 Payments</a>
-    </li>
     <li *ngIf="tokenStorageService.isLogged()" routerLink="/profile">
       <a
         [ngClass]="active === 'profile' ? 'is-active': ''"
