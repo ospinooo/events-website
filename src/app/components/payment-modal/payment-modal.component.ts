@@ -3,6 +3,8 @@ import { Event } from "../../models/event.model";
 import Bulma from '@vizuaalog/bulmajs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TicketsService, FeeTickets, Assistant } from 'src/app/services/tickets.service';
+import { UserService } from 'src/app/services/user.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-payment-modal',
@@ -29,9 +31,14 @@ export class PaymentModalComponent implements OnInit {
   usernameTickets: HTMLCollectionOf<Element>;
   userIdTickets: HTMLCollectionOf<Element>;
 
+  points: number;
+  error_points: string;
+
   constructor(
     private formBuilder: FormBuilder,
-    private ticketsService: TicketsService) {
+    private ticketsService: TicketsService,
+    private userService: UserService,
+    private tokenService: TokenStorageService) {
     this.total_people = 0;
   }
 
@@ -39,6 +46,9 @@ export class PaymentModalComponent implements OnInit {
     this.step_id = 0;
     this.total = 0;
     this.fee_tickets = Array<number>(this.event.fees.length).fill(0);
+    this.userService.getUserData(this.tokenService.getUsername()).subscribe(data => {
+      this.points = data.points;
+    })
   }
 
   changeTotalNumber(event: any, fee: any, i: number) {
@@ -90,6 +100,7 @@ export class PaymentModalComponent implements OnInit {
       this.isCheckoutFilled = true;
     }
 
+    this.error_points = this.points < this.getTotalPrice() ? "Not enough poins" : "";
   }
 
   getTotalPrice(): number {
@@ -132,5 +143,9 @@ export class PaymentModalComponent implements OnInit {
       }, error => {
         console.log(error);
       })
+  }
+
+  getPoints() {
+    return this.points;
   }
 }

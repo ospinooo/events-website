@@ -132,6 +132,9 @@
       </div>
       <div>
         <span>Total: {{getTotalPrice()}}</span>
+        <br>
+        <span>Your points: {{getPoints()}}</span>
+        <span class="help is-danger">{{error_points}}</span>
       </div>
     </div>
 
@@ -155,7 +158,7 @@
         (click)="continue()"
         [disabled]="step_id == 3 || this.total_people == 0 || this.total_people>
         10 || (!isDocumentationfilled && step_id == 1) || (step_id==2 &&
-        !isCheckoutFilled)">
+        !isCheckoutFilled) || (step_id == 2 && error_points.length > 0)">
         Continue
       </button>
     </div>
