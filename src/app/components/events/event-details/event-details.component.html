@@ -13,11 +13,10 @@
 <div class="card">
   <div class="card-content">
     <div class="content">
-      <p class="title is-4">{{event_model.id}} - {{event_model.title}}</p>
-      <p class="subtitle is-6">{{"SUBTITLE"}}</p>
-      <strong>Time: </strong><time
-        datetime="2016-1-1">11:09
-        PM - 1 Jan 2016</time>
+      <p class="title is-4">{{event_model.title}}</p>
+      <p class="subtitle is-6">{{event_model.subtitle}}</p>
+      <strong>Date: </strong>
+      <time datetime="2016-1-1">{{event_model.date}}</time>
       <hr>
       {{event_model.description}}
       <hr>
@@ -41,11 +40,6 @@
       </div>
       <hr>
       <a>@{{event_model.username}}</a>
-      <br>
-      <div class="card-created-at">
-        <time datetime="2016-1-1">Created - 1 Jan 2016
-          <br> At 11:09 PM </time>
-      </div>
       <br>
     </div>
 
