@@ -23,12 +23,12 @@
     <tbody>
       <tr *ngFor="let ticket of tickets; let i= index;" class="table-row">
         <th>{{i+1}}</th>
-        <td>title</td>
+        <td>{{ticket.fee.eventData.title}}</td>
         <td>{{ticket.fee.title}}</td>
         <td>{{ticket.fee.price}}</td>
         <td>{{ticket.assistantName}}</td>
         <td>{{ticket.assistantId}}</td>
-        <td>date</td>
+        <td>{{ticket.fee.eventData.date}}</td>
       </tr>
       <!-- <tr class="is-selected">
       <th></th>
