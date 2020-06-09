@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { Event } from '../../models/event.model';
+import { ActivatedRoute } from '@angular/router';
 
 
 enum Direction {
@@ -37,7 +38,7 @@ export class EventsListComponent implements OnInit {
   /**
    * Each time we construct the events list we are going to pass in params a Search key
    */
-  constructor(private eventsService: EventsService) {
+  constructor(private eventsService: EventsService, private route: ActivatedRoute) {
     this.page = 0;
     this.currentNumberPages = 1;
   }
