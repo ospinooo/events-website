@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +9,12 @@ export class AppComponent {
   title = 'events-website';
 
   year = new Date().getFullYear();
+
+  ngOnInit() {
+    if (isDevMode()) {
+      console.log('👋 Development!');
+    } else {
+      console.log('💪 Production!');
+    }
+  }
 }

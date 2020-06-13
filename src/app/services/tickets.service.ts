@@ -6,6 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Ticket } from '../models/ticket.model';
 import { PageableTicket } from './res/ticket.interface';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { environment } from 'src/environments/environment';
 
 
 export class FeeTickets {
@@ -34,7 +35,7 @@ export class Assistant {
 })
 export class TicketsService {
 
-  private ticketsUrl = 'http://localhost:8080/tickets';
+  private ticketsUrl = environment.apiUrl + '/tickets';
 
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 

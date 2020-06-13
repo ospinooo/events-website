@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 
 const httpOptions = {
@@ -53,8 +55,8 @@ export enum Role {
 })
 export class AuthenticationService {
 
-  private loginUrl = 'http://localhost:8080/auth/signin';
-  private signupUrl = 'http://localhost:8080/auth/signup';
+  private loginUrl = environment.apiUrl + '/auth/signin';
+  private signupUrl = environment.apiUrl + '/auth/signup';
 
 
   constructor(private http: HttpClient) { }

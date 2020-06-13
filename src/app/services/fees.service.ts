@@ -5,13 +5,14 @@ import { Observable, of } from 'rxjs';
 import { httpOptions } from './http/http.options';
 import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeesService {
 
-  private feesUrl = 'http://localhost:8080/fees';
+  private feesUrl = environment.apiUrl + '/fees';
 
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 

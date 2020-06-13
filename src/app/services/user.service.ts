@@ -6,6 +6,7 @@ import { tap, catchError } from 'rxjs/operators';
 import { ValidUserInfo } from './res/valid.user';
 import { User } from './res/user.interface';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -13,8 +14,8 @@ import { TokenStorageService } from '../auth/token-storage.service';
 })
 export class UserService {
 
-  private authUrl = 'http://localhost:8080/auth';
-  private usersUrl = 'http://localhost:8080/users';
+  private authUrl = environment.apiUrl + '/auth';
+  private usersUrl = environment.apiUrl + '/users';
 
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
