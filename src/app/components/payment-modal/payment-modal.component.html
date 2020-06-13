@@ -75,59 +75,11 @@
 
     <div id="payment-checkout" [style.display]="step_id != 2 ? 'none' : ''">
       <div class="field">
+        <span class="help is-info">Confirm by writting the name</span>
         <label class="label">Name</label>
         <div class="control">
           <input id="checkout-name" class="input" (focus)="updateCardPayment()"
             type="name" placeholder="e.g. Pablo Ospino">
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Card Number</label>
-        <div class="control">
-          <input id="checkout-cardnumber" class="input"
-            (focus)="updateCardPayment()" type="tel"
-            pattern="[0-9\s]{13,19}"
-            maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">CVV</label>
-        <div class="control">
-          <input id="checkout-cvv" class="input" (focus)="updateCardPayment()"
-            type="tel"
-            maxlength="3" pattern="\d{3}"
-            placeholder="e.g.
-            123">
-        </div>
-      </div>
-
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <label class="label">Month</label>
-            <div class="control">
-              <input id="checkout-month" class="input"
-                (focus)="updateCardPayment()" type="tel"
-                maxlength="2"
-                pattern="[01|02|03|04|05|06|07|08|09|10|11|12]"
-                placeholder="e.g.
-                06">
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="field">
-            <label class="label">Year</label>
-            <div class="control">
-              <input id="checkout-year" class="input"
-                (focus)="updateCardPayment()" type="tel"
-                pattern="\d{2}"
-                maxlength="2"
-                placeholder="22">
-            </div>
-          </div>
         </div>
       </div>
       <div>

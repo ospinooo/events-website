@@ -91,12 +91,8 @@ export class PaymentModalComponent implements OnInit {
 
   updateCardPayment() {
     let name: any = document.getElementById("checkout-name");
-    let cardnumber: any = document.getElementById("checkout-cardnumber");
-    let cvv: any = document.getElementById("checkout-cvv");
-    let month: any = document.getElementById("checkout-month");
-    let year: any = document.getElementById("checkout-year");
 
-    if (name.value != '' && cardnumber.value != '' && cvv.value != '' && month.value != '' && year.value != '') {
+    if (name.value != '') {
       this.isCheckoutFilled = true;
     }
 
