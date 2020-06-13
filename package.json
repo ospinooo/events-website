@@ -30,7 +30,7 @@
     "ngx-infinite-scroll": "^9.0.0",
     "ngx-mapbox-gl": "^4.5.0",
     "rxjs": "~6.5.4",
-    "sweetalert2": "^9.10.13",
+    "sweetalert2": "^9.15.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
