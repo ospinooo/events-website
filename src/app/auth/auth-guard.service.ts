@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 @Injectable({
   providedIn: 'root'
