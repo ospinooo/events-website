@@ -19,7 +19,7 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     // Get the data from today.
-    this.eventsService.getEventsByDate(getTodayString())
+    this.eventsService.getEventsByDate(getTodayString(), getTodayString())
       .subscribe(data => {
         this.events = data.content;
       })
@@ -30,8 +30,10 @@ export class CalendarComponent implements OnInit {
       displayMode: 'inline',
       dateFormat: 'YYYY-MM-DD',
       startDate: getTodayString(),
+      endDate: getTodayString(),
       weekStart: 1,
-      lang: "en"
+      lang: "en",
+      isRange: true,
     });
 
     // Loop on each calendar initialized
@@ -47,7 +49,10 @@ export class CalendarComponent implements OnInit {
     if (element) {
       // bulmaCalendar instance is available as element.bulmaCalendar
       element.bulmaCalendar.on('select', datepicker => {
-        this.eventsService.getEventsByDate(datepicker.data.value())
+        let ls = datepicker.data.value().split(" - ");
+        let date_init: string = ls[0];
+        let date_end: string = ls[1];
+        this.eventsService.getEventsByDate(date_init, date_end)
           .subscribe(data => {
             this.events = data.content;
           })

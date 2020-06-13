@@ -11,13 +11,12 @@
           <div class="media">
             <div class="media-content">
               <a class="title is-4" routerLink='/events/{{event.id}}'>{{event.title}}</a>
+              <br>
+              <div class="is-6">{{event.subtitle}}</div>
+              <a>@{{event.username}}</a>
+              <br>
+              <time>{{event.date || "No date"}}</time>
             </div>
-          </div>
-
-          <div class="content">
-            <a>@{{event.username}}</a>
-            <br>
-            <time>{{event.date || "No date"}}</time>
           </div>
         </div>
       </div>

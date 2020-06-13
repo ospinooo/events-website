@@ -52,11 +52,11 @@ export class EventsService {
     );
   }
 
-  getEventsByDate(date: string): Observable<PageableEvent> {
-    const url = `${this.eventsUrl}?date=${date}`;
+  getEventsByDate(date_init: string, date_end: string): Observable<PageableEvent> {
+    const url = `${this.eventsUrl}?date_init=${date_init}&date_end=${date_end}`;
     return this.http.get<PageableEvent>(url, httpOptions).pipe(
-      tap(_ => this.log(`fetched event date=${date}`)),
-      catchError(this.handleError<PageableEvent>(`getEvent date=${date}`))
+      tap(_ => this.log(`fetched event date=${date_init}&date_end=${date_end}`)),
+      catchError(this.handleError<PageableEvent>(`getEvent date=${date_init}&date_end=${date_end}`))
     );
   }
 
