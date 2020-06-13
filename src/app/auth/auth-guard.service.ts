@@ -15,6 +15,12 @@ export class AuthGuardService implements CanActivate {
 
     if (!this.token.isLogged()) {
       this.router.navigate(['']);
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You need to be a user to access this',
+      });
       return false;
     }
 
