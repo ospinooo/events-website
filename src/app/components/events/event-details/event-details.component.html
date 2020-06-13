@@ -1,6 +1,7 @@
 <div class="columns is-mobile">
   <div class="column">
     <button class="button is-success"
+      [disabled]="!pastEvent"
       (click)="openBuyTicketsModal()">Buy from: {{getEventCheapestPrice()}}</button>
   </div>
   <div class="column">
@@ -45,6 +46,7 @@
 
     <div class="card-footer">
       <button class="button card-buy-tickets-button is-success"
+        [disabled]="!pastEvent"
         (click)="openBuyTicketsModal()">Buy Tickets</button>
     </div>
   </div>
