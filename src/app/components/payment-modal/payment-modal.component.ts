@@ -38,7 +38,7 @@ export class PaymentModalComponent implements OnInit {
     private formBuilder: FormBuilder,
     private ticketsService: TicketsService,
     private userService: UserService,
-    private tokenService: TokenStorageService) {
+    public tokenService: TokenStorageService) {
     this.total_people = 0;
   }
 
@@ -84,7 +84,6 @@ export class PaymentModalComponent implements OnInit {
       blank = username.value == '' || id.value == '';
       i = i + 1;
     }
-    console.log(this.fee_assistants);
 
     this.isDocumentationfilled = !blank;
   }
@@ -92,8 +91,10 @@ export class PaymentModalComponent implements OnInit {
   updateCardPayment() {
     let name: any = document.getElementById("checkout-name");
 
-    if (name.value != '') {
+    if (name.value == this.tokenService.getUsername()) {
       this.isCheckoutFilled = true;
+    } else {
+      this.isCheckoutFilled = false;
     }
 
     this.error_points = this.points < this.getTotalPrice() ? "Not enough poins" : "";

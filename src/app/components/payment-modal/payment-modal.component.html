@@ -75,10 +75,10 @@
 
     <div id="payment-checkout" [style.display]="step_id != 2 ? 'none' : ''">
       <div class="field">
-        <span class="help is-info">Confirm by writting the name</span>
+        <span class="help is-info">Confirm by writting your username: <strong>{{tokenService.getUsername()}}</strong></span>
         <label class="label">Name</label>
         <div class="control">
-          <input id="checkout-name" class="input" (focus)="updateCardPayment()"
+          <input id="checkout-name" class="input" (change)="updateCardPayment()"
             type="name" placeholder="e.g. Pablo Ospino">
         </div>
       </div>
