@@ -6,6 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { PageableEvent } from './res/events.interface';
 import { EventCreate } from './req/event.create';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { environment } from 'src/environments/environment';
 
 
 const httpOptions = {
@@ -23,7 +24,7 @@ export class EventsService {
 
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
-  private eventsUrl = 'http://localhost:8080/events';
+  private eventsUrl = environment.apiUrl + '/events';
 
 
   /** GET events from the server */
