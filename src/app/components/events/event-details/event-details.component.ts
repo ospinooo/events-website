@@ -15,24 +15,26 @@ export class EventDetailsComponent implements OnInit {
 
   id: number;
   sub;
-  pastEvent: boolean;
+  pastEvent: boolean = true;
 
   constructor(private route: ActivatedRoute, private eventsService: EventsService) {
 
   }
 
   ngOnInit() {
-
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.getEvent();
-      this.pastEvent = new Date(this.event_model.date) < new Date(getTodayString());
     })
   }
 
   getEvent() {
     this.eventsService.getEvent(this.id)
-      .subscribe((event) => this.event_model = event)
+      .subscribe((event) => {
+        this.event_model = event;
+        this.pastEvent = new Date(this.event_model.date) < new Date(getTodayString());
+        console.log(this.event_model.date, getTodayString())
+      })
   }
 
   getEventCheapestPrice() {
