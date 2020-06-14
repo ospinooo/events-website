@@ -1,9 +1,10 @@
 import { Component, OnInit, ɵConsole, EventEmitter, Output } from '@angular/core';
-import { AuthenticationService, SignupInfo } from 'src/app/auth/authentication.service';
+import { AuthenticationService, SignupInfo, LoginInfo } from 'src/app/auth/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 import Bulma from '@vizuaalog/bulmajs';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -27,7 +28,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private userService: UserService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private tokenStorage: TokenStorageService) {
     this.createForm();
   }
 
@@ -69,13 +71,27 @@ export class RegisterComponent implements OnInit {
         this.isSignUpEmitter.emit(true);
         // this.isSignedUp = true;
         // this.isSignUpFailed = false;
-        Bulma.create('notification', {
-          body: 'Welcome to MusicMeets! 🎉',
-          color: 'success',
-          isDismissable: true,
-          parent: document.getElementById('notification'),
-        }).show();
+        this.authService.attemptAuth(
+          new LoginInfo(
+            this.registerForm.value.username,
+            this.registerForm.value.password))
+          .subscribe(
+            data => {
+              // Save data
+              console.log("SUCCESS")
+              console.log(data);
+              this.tokenStorage.saveToken(data.token);
+              this.tokenStorage.saveUsername(data.username);
+              this.tokenStorage.saveAuthorities(data.authorities);
 
+              Bulma.create('notification', {
+                body: 'Welcome to MusicMeets! 🎉',
+                color: 'success',
+                isDismissable: true,
+                parent: document.getElementById('notification'),
+              }).show();
+            }
+          )
       },
       error => {
         // Error
