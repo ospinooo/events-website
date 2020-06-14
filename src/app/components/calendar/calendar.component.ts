@@ -12,14 +12,21 @@ import { getTodayString } from 'src/app/helpers/date';
 export class CalendarComponent implements OnInit {
 
   events: Event[] = [];
+  PAGESIZE: number = 9;
+  currentNumberPages: number;
+  page: number;
+
+  date_init: string;
+  date_end: string;
 
   constructor(private eventsService: EventsService) {
-
+    this.page = 0;
+    this.currentNumberPages = 1;
   }
 
   ngOnInit(): void {
     // Get the data from today.
-    this.eventsService.getEventsByDate(getTodayString(), getTodayString())
+    this.eventsService.getEventsByDate(this.page, getTodayString(), getTodayString())
       .subscribe(data => {
         this.events = data.content;
       })
@@ -50,9 +57,9 @@ export class CalendarComponent implements OnInit {
       // bulmaCalendar instance is available as element.bulmaCalendar
       element.bulmaCalendar.on('select', datepicker => {
         let ls = datepicker.data.value().split(" - ");
-        let date_init: string = ls[0];
-        let date_end: string = ls[1];
-        this.eventsService.getEventsByDate(date_init, date_end)
+        this.date_init = ls[0];
+        this.date_end = ls[1];
+        this.eventsService.getEventsByDate(this.page, this.date_init, this.date_end)
           .subscribe(data => {
             this.events = data.content;
           })
@@ -60,4 +67,24 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  onScrollDown(ev) {
+    console.log('scrolled down!!', ev);
+
+    this.eventsService.getEventsByDate(this.currentNumberPages, this.date_init, this.date_end)
+      .subscribe(data => {
+        this.events = this.events.concat(data.content);
+        if (data.content.length > 0) {
+          this.currentNumberPages += 1;
+        }
+      })
+  }
+
+
+  onUp(ev) {
+    console.log('scrolled up!', ev);
+    // Delete the rest
+    this.events = this.events.filter((e, i) => i < this.PAGESIZE)
+    // Reset
+    this.currentNumberPages = 1;
+  }
 }

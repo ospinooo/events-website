@@ -5,23 +5,34 @@
   </div>
 
   <div class="column is-8">
-    <div *ngFor="let event of events">
-      <div class="card">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <a class="title is-4" routerLink='/events/{{event.id}}'>{{event.title}}</a>
-              <br>
-              <div class="is-6">{{event.subtitle}}</div>
-              <a>@{{event.username}}</a>
-              <br>
-              <time>{{event.date || "No date"}}</time>
+
+    <div class="search-results" *ngIf="events.length>0"
+      infiniteScroll
+      debounce
+      [infiniteScrollUpDistance]="3"
+      [alwaysCallback]="true"
+      [fromRoot]="true"
+      (scrolled)="onScrollDown($event)"
+      (scrolledUp)="onUp($event)">
+
+      <div *ngFor="let event of events">
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <a class="title is-4" routerLink='/events/{{event.id}}'>{{event.title}}</a>
+                <br>
+                <div class="is-6">{{event.subtitle}}</div>
+                <a>@{{event.username}}</a>
+                <br>
+                <time>{{event.date || "No date"}}</time>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <br>
+        <br>
+      </div>
     </div>
 
     <div class="center" [ngClass]="events.length == 0 ? 'display'
@@ -29,4 +40,5 @@
       <div *ngIf="events.length == 0">No events for this date 😩</div>
     </div>
   </div>
+
 </div>
