@@ -5,7 +5,8 @@
       (click)="openBuyTicketsModal()">Buy from: {{getEventCheapestPrice()}}</button>
   </div>
   <div class="column">
-    <div id="edit-button">
+    <div id="edit-button" *ngIf="tokenStorageService.getUsername() ==
+      event_model.username">
       <a routerLink="/event/edit/{{id}}" class="button is-info is-small
         is-right">Edit</a>
     </div>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EventsService } from 'src/app/services/events.service';
 import { Event, getCheapestPrice } from '../../../models/event.model';
 import { getTodayString } from 'src/app/helpers/date';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-event-details',
@@ -17,7 +18,10 @@ export class EventDetailsComponent implements OnInit {
   sub;
   pastEvent: boolean = true;
 
-  constructor(private route: ActivatedRoute, private eventsService: EventsService) {
+  constructor(
+    private route: ActivatedRoute,
+    private eventsService: EventsService,
+    public tokenStorageService: TokenStorageService) {
 
   }
 
