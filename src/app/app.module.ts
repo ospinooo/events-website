@@ -11,7 +11,6 @@ import { EventDetailsComponent } from './components/events/event-details/event-d
 import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { AdminComponent } from './components/admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -34,7 +33,6 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     PaymentModalComponent,
     AboutComponent,
     ProfileComponent,
-    AdminComponent,
     RegisterComponent,
     LoginComponent,
     CreateEventComponent,

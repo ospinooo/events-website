@@ -4,7 +4,6 @@ import { EventDetailsComponent } from './components/events/event-details/event-d
 import { EventsListComponent } from './components/events-list/events-list.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { AdminComponent } from './components/admin/admin.component';
 import { CreateEventComponent } from './components/events/create-event/create-event.component';
 import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 import { TicketsListComponent } from './components/tickets-list/tickets-list.component';
@@ -25,7 +24,6 @@ const routes: Routes = [
   { path: 'tickets', component: TicketsListComponent, canActivate: [AuthGuardService] },
 
   // ADMIN
-  { path: 'admin', component: AdminComponent, canActivate: [AdminGuardService] },
   { path: 'event/create', component: CreateEventComponent, canActivate: [AdminGuardService] },
   { path: 'event/edit/:id', component: EditEventComponent, canActivate: [AdminGuardService] },
 
