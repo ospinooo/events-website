@@ -74,7 +74,7 @@
         <div *ngFor="let fee of getFees(); let i= index" class="list-item">
 
           <div class="columns">
-            <div class="column is-four-fifths">
+            <div class="column">
               <div class="field-body">
                 <div class="field">
                   <p class="control is-expanded">
@@ -85,7 +85,8 @@
                 <div class="field">
                   <p class="control is-expanded">
                     <input class="input" type="number"
-                      placeholder="Price" #pricefee value="{{fee.price}}">
+                      placeholder="Price" #pricefee value="{{fee.price}}"
+                      [disabled]="true">
                   </p>
                 </div>
 
@@ -102,12 +103,11 @@
               </div>
             </div>
 
-            <div class="column">
+            <!-- <div class="column">
               <span class="center">
                 <i (click)="deleteFee(i)" class="fas fa-trash hover-red"></i>
               </span>
-            </div>
-
+            </div> -->
           </div>
         </div>
 
