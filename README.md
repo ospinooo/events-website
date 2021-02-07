@@ -21,6 +21,7 @@ ng serve
 
 Music events create form.
 
+### Create events
 ![Create Form](images/Screenshot%202021-02-07%20at%2015.23.39.png)
 
 ![Calendar selector](images/Screenshot%202021-02-07%20at%2015.24.12.png)
@@ -37,9 +38,10 @@ Music events create form.
 
 ![Ticket purchase](images/Screenshot%202021-02-07%20at%2015.26.39.png)
 
----
 ![Tickets list](images/Screenshot%202021-02-07%20at%2015.27.02.png)
+---
 
+### Calendar selector
 ![Calendar selector](images/Screenshot%202021-02-07%20at%2015.27.22.png)
 
 
