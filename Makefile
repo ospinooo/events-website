@@ -1,9 +1,5 @@
 
 
 build:
-	ng build --base-href /events-website
-
-build_docs: build
-	cp mv dist/events-website/* docs/
-
+	ng build --prod --output-path docs --base-href /events-website/
 
