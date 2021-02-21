@@ -37,3 +37,15 @@
   justify-content: right;
   align-items: right;
 }
+
+@media (max-width: 600px) {
+  #sorting-navbar {
+    display:flex;
+    flex-direction: column;
+  }
+
+  #sorting-navbar * {
+    width: 100%;
+  }
+
+}

@@ -1,30 +1,29 @@
-
-
-
 <div class="container is-fluid">
-
-  <div class="columns is-mobile">
+  <div id="sorting-navbar" class="columns is-mobile">
     <div class="column">
       <div class="tabs is-toggle">
         <ul>
-          <li [ngClass]="sortActive== 'date' ? 'is-active':''">
-            <a (click)="sortActive= 'date';getEvents()">
-              <span class="icon is-small"><i class="fas fa-calendar"
-                  aria-hidden="true"></i></span>
+          <li [ngClass]="sortActive == 'date' ? 'is-active' : ''">
+            <a (click)="sortActive = 'date'; getEvents()">
+              <span class="icon is-small"
+                ><i class="fas fa-calendar" aria-hidden="true"></i
+              ></span>
               <span>Date</span>
             </a>
           </li>
-          <li [ngClass]="sortActive== 'fees.price' ? 'is-active':''">
-            <a (click)="sortActive= 'fees.price';getEvents()">
-              <span class="icon is-small"><i class="fas fa-dollar-sign"
-                  aria-hidden="true"></i></span>
+          <li [ngClass]="sortActive == 'fees.price' ? 'is-active' : ''">
+            <a (click)="sortActive = 'fees.price'; getEvents()">
+              <span class="icon is-small"
+                ><i class="fas fa-dollar-sign" aria-hidden="true"></i
+              ></span>
               <span>Price</span>
             </a>
           </li>
-          <li [ngClass]="sortActive== 'title' ? 'is-active':''">
-            <a (click)="sortActive= 'title';getEvents()">
-              <span class="icon is-small"><i class="fas fa-heading"
-                  aria-hidden="true"></i></span>
+          <li [ngClass]="sortActive == 'title' ? 'is-active' : ''">
+            <a (click)="sortActive = 'title'; getEvents()">
+              <span class="icon is-small"
+                ><i class="fas fa-heading" aria-hidden="true"></i
+              ></span>
               <span>Title</span>
             </a>
           </li>
@@ -34,17 +33,19 @@
     <div class="column right">
       <div class="tabs is-toggle">
         <ul>
-          <li [ngClass]="descAscActive== 'asc' ? 'is-active':''">
-            <a (click)="descAscActive= 'asc';getEvents()">
-              <span class="icon is-small"><i class="fas fa-sort-amount-up-alt"
-                  aria-hidden="true"></i></span>
+          <li [ngClass]="descAscActive == 'asc' ? 'is-active' : ''">
+            <a (click)="descAscActive = 'asc'; getEvents()">
+              <span class="icon is-small"
+                ><i class="fas fa-sort-amount-up-alt" aria-hidden="true"></i
+              ></span>
               <span>Asc</span>
             </a>
           </li>
-          <li [ngClass]="descAscActive== 'desc' ? 'is-active':''">
-            <a (click)="descAscActive= 'desc';getEvents()">
-              <span class="icon is-small"><i class="fas fa-sort-amount-down-alt"
-                  aria-hidden="true"></i></span>
+          <li [ngClass]="descAscActive == 'desc' ? 'is-active' : ''">
+            <a (click)="descAscActive = 'desc'; getEvents()">
+              <span class="icon is-small"
+                ><i class="fas fa-sort-amount-down-alt" aria-hidden="true"></i
+              ></span>
               <span>Desc</span>
             </a>
           </li>
@@ -53,50 +54,80 @@
     </div>
   </div>
 
-  <div class="search-results" *ngIf="eventsList.length>0"
+  <div
+    class="search-results"
+    *ngIf="eventsList.length > 0"
     infiniteScroll
     debounce
     [infiniteScrollUpDistance]="3"
     [alwaysCallback]="true"
     [fromRoot]="true"
     (scrolled)="onScrollDown($event)"
-    (scrolledUp)="onUp($event)">
-
-    <div *ngFor="let j of getCurrentNumberPages(); let i= index">
+    (scrolledUp)="onUp($event)"
+  >
+    <div *ngFor="let j of getCurrentNumberPages(); let i = index">
       <div class="columns">
-        <div *ngIf="eventsList.length> 0 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[0 + i*PAGESIZE]"></app-event-card></div>
-        <div *ngIf="eventsList.length> 1 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[1 + i*PAGESIZE]"></app-event-card></div>
-        <div *ngIf="eventsList.length> 2 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[2 + i*PAGESIZE]"></app-event-card></div>
-      </div>
-      <div class="columns">
-        <div *ngIf="eventsList.length> 3 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[3 + i*PAGESIZE]"></app-event-card></div>
-        <div *ngIf="eventsList.length> 4 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[4 + i*PAGESIZE]"></app-event-card></div>
-        <div *ngIf="eventsList.length> 5 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[5 + i*PAGESIZE]"></app-event-card></div>
-      </div>
-      <div class="columns">
-        <div *ngIf="eventsList.length> 6 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[6 + i*PAGESIZE]"></app-event-card>
+        <div *ngIf="eventsList.length > 0 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[0 + i * PAGESIZE]"
+          ></app-event-card>
         </div>
-        <div *ngIf="eventsList.length> 7 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[7 + i*PAGESIZE]"></app-event-card></div>
-        <div *ngIf="eventsList.length> 8 + i*PAGESIZE" class="column">
-          <app-event-card [event_model]="eventsList[8 + i*PAGESIZE]"></app-event-card></div>
+        <div *ngIf="eventsList.length > 1 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[1 + i * PAGESIZE]"
+          ></app-event-card>
+        </div>
+        <div *ngIf="eventsList.length > 2 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[2 + i * PAGESIZE]"
+          ></app-event-card>
+        </div>
+      </div>
+      <div class="columns">
+        <div *ngIf="eventsList.length > 3 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[3 + i * PAGESIZE]"
+          ></app-event-card>
+        </div>
+        <div *ngIf="eventsList.length > 4 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[4 + i * PAGESIZE]"
+          ></app-event-card>
+        </div>
+        <div *ngIf="eventsList.length > 5 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[5 + i * PAGESIZE]"
+          ></app-event-card>
+        </div>
+      </div>
+      <div class="columns">
+        <div *ngIf="eventsList.length > 6 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[6 + i * PAGESIZE]"
+          ></app-event-card>
+        </div>
+        <div *ngIf="eventsList.length > 7 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[7 + i * PAGESIZE]"
+          ></app-event-card>
+        </div>
+        <div *ngIf="eventsList.length > 8 + i * PAGESIZE" class="column">
+          <app-event-card
+            [event_model]="eventsList[8 + i * PAGESIZE]"
+          ></app-event-card>
+        </div>
       </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <span *ngIf="eventsList.length>0" class="center">No more events </span>
+    <br />
+    <br />
+    <br />
+    <span *ngIf="eventsList.length > 0" class="center">No more events </span>
   </div>
 </div>
 
-<div class="center" [ngClass]="eventsList.length == 0 ? 'display'
-  :'dont-display'">
+<div
+  class="center"
+  [ngClass]="eventsList.length == 0 ? 'display' : 'dont-display'"
+>
   <div *ngIf="eventsList.length == 0">No events 😩</div>
 </div>
